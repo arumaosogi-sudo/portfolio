@@ -150,6 +150,15 @@
     padding:15px 27px;transition:background .2s;
   }
   .btn:hover{background:var(--accent-dim)}
+  .btn-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+  .btn-row .btn{margin-top:0}
+  .btn-sm{
+    display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:13px;
+    color:var(--slate-lightest);border:1px solid var(--bg-lightest);border-radius:5px;
+    padding:12px 20px;transition:border-color .2s,color .2s;
+  }
+  .btn-sm:hover{border-color:var(--accent);color:var(--accent)}
+  .btn-sm svg{width:15px;height:15px;fill:currentColor}
 
   footer{
     font-family:var(--mono);font-size:12.5px;color:var(--slate);
@@ -209,6 +218,15 @@
       <span class="dot"></span>
       <span data-en>Open to part-time &amp; freelance</span>
       <span data-th>รับงาน part-time และฟรีแลนซ์</span>
+    </div>
+
+    <div class="btn-row" style="margin-top:24px">
+      <a class="btn-sm" href="Nitiphum-Hongson-CV-EN.pdf" download>
+        <svg viewBox="0 0 24 24"><path d="M12 16l-6-6h4V4h4v6h4l-6 6zm-7 2h14v2H5v-2z"/></svg><span data-en>Download CV</span><span data-th>ดาวน์โหลด CV (EN)</span>
+      </a>
+      <a class="btn-sm" href="Nitiphum-Hongson-CV-TH.pdf" download>
+        <svg viewBox="0 0 24 24"><path d="M12 16l-6-6h4V4h4v6h4l-6 6zm-7 2h14v2H5v-2z"/></svg><span data-en>CV (Thai)</span><span data-th>ดาวน์โหลด CV (ไทย)</span>
+      </a>
     </div>
 
     <nav id="nav">
@@ -479,7 +497,12 @@
         <span data-en>I'm looking for part-time and freelance work while I finish my degree — API work, database work, front end, testing, or just finishing something that stalled. If you have something in mind, my inbox is open.</span>
         <span data-th>ผมกำลังมองหางาน part-time และงานฟรีแลนซ์ระหว่างเรียนอยู่ครับ ไม่ว่าจะเป็นงาน API งานฐานข้อมูล งานหน้าเว็บ งานทดสอบ หรือแค่มางานที่ค้างอยู่ให้จบ ถ้ามีอะไรในใจ ทักมาได้เลยครับ</span>
       </p>
-      <a class="btn" href="mailto:aruma.osogi@gmail.com">aruma.osogi@gmail.com</a>
+      <div class="btn-row">
+        <a class="btn" href="mailto:aruma.osogi@gmail.com">aruma.osogi@gmail.com</a>
+        <a class="btn-sm" href="Nitiphum-Hongson-CV-EN.pdf" download>
+          <svg viewBox="0 0 24 24"><path d="M12 16l-6-6h4V4h4v6h4l-6 6zm-7 2h14v2H5v-2z"/></svg><span data-en>Download my CV</span><span data-th>ดาวน์โหลด CV ของผม</span>
+        </a>
+      </div>
       <p style="margin-top:22px;font-family:var(--mono);font-size:13.5px">
         <span data-en>Chiang Rai, Thailand · open to remote</span>
         <span data-th>จ.เชียงราย · ทำงานออนไลน์ได้</span>
