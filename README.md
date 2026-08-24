@@ -3,7 +3,7 @@
 Personal portfolio site. Hand-coded, no framework — a single `index.html` with plain CSS and
 about 30 lines of JavaScript.
 
-**Live:** _(add your GitHub Pages / Vercel URL here once deployed)_
+**Live:** https://arumaosogi-sudo.github.io/portfolio/
 
 ## What's in it
 
@@ -18,6 +18,7 @@ about 30 lines of JavaScript.
 ```
 index.html     the entire site
 profile.jpg    profile photo
+og-card.png    1200x630 social preview image
 ```
 
 ## Running it
