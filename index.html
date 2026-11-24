@@ -96,6 +96,12 @@
   .entry-title{font-size:19px;color:var(--ink);font-weight:600;line-height:1.35}
   .entry-title a{border-bottom:1px solid var(--rule);transition:border-color .15s}
   .entry-title a:hover{border-bottom-color:var(--accent)}
+  .entry-title .live{font-size:12.5px;font-weight:500;color:var(--accent);background:var(--accent-soft);
+       border:1px solid var(--accent-soft);border-bottom-color:var(--accent-soft);border-radius:999px;
+       padding:2px 10px;margin-left:10px;white-space:nowrap;vertical-align:2px}
+  .entry-title .live:hover{border-color:var(--accent);border-bottom-color:var(--accent)}
+  .demo-note{margin-top:10px;font-size:14px;color:var(--ink-faint)}
+  .demo-note code{color:var(--ink-soft);font-size:13.5px}
   .entry-year{font-size:14px;color:var(--ink-faint);white-space:nowrap}
   .entry-meta{font-size:15px;color:var(--ink-faint);margin-top:5px}
   .entry-meta .tag{color:var(--accent)}
@@ -236,7 +242,8 @@
       <div class="entry">
         <div class="entry-head">
           <div class="entry-title">
-            <a href="https://github.com/arumaosogi-sudo/Project_task_broad" target="_blank" rel="noopener">Task Board</a>
+            <a href="https://github.com/arumaosogi-sudo/task-board" target="_blank" rel="noopener">Task Board</a>
+            <a class="live" href="https://taskboard-aruma-web.onrender.com" target="_blank" rel="noopener">Live demo ↗</a>
           </div>
           <div class="entry-year">2026</div>
         </div>
@@ -264,6 +271,118 @@
             </ul>
           </div>
           <div class="stack">NestJS · Prisma · PostgreSQL · React · TypeScript · Yjs · Docker · Playwright</div>
+          <div class="demo-note">
+            <span data-en>Demo sign-in: <code>demo@task-board.app</code> / <code>demo-task-board-2026</code> — the API sleeps when idle, so the first load can take up to a minute.</span>
+            <span data-th>เข้าสู่ระบบตัวอย่าง: <code>demo@task-board.app</code> / <code>demo-task-board-2026</code> — เซิร์ฟเวอร์จะหลับเมื่อไม่มีคนใช้ ครั้งแรกอาจรอถึงหนึ่งนาที</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <div class="entry-title">
+            <a href="https://github.com/arumaosogi-sudo/classroom-savings-bank" target="_blank" rel="noopener">Classroom Savings Bank</a>
+            <a class="live" href="https://kid-savings-bank.vercel.app" target="_blank" rel="noopener">Live demo &#8599;</a>
+          </div>
+          <div class="entry-year">2026</div>
+        </div>
+        <div class="entry-meta">
+          <span data-en>Solo project &mdash; web, Android and a LINE integration</span>
+          <span data-th>&#3650;&#3611;&#3619;&#3648;&#3592;&#3585;&#3605;&#3660;&#3648;&#3604;&#3637;&#3656;&#3618;&#3623; &mdash; &#3607;&#3633;&#3657;&#3591;&#3648;&#3623;&#3655;&#3610; Android &#3649;&#3621;&#3632;&#3648;&#3594;&#3639;&#3656;&#3629;&#3617;&#3605;&#3656;&#3629; LINE</span>
+        </div>
+        <div class="entry-body">
+          <div data-en>
+            <p>Thai primary schools run a classroom savings bank out of a paper passbook: the teacher collects a few baht each morning and writes it down, totals drift, and parents only learn the balance at the end of term. This replaces the book, and sends each parent a weekly balance card inside LINE &mdash; the app their family already has, so there is nothing to install.</p>
+            <ul>
+              <li>Every teacher connects their own LINE Official Account: the app validates the token, registers the webhook automatically, and can repair a misrouted one from the settings page</li>
+              <li>Channel keys are encrypted at rest with <strong>AES-256-GCM</strong>, and every webhook request is verified by HMAC signature</li>
+              <li>Built for audit: deposits pass a confirm step showing the balance before and after, mistakes can be undone, and older reversals are recorded as visible entries instead of deletions</li>
+              <li>11 PostgreSQL tables over 6 migrations, Excel export, and an Android build of the same app</li>
+            </ul>
+          </div>
+          <div data-th>
+            <p>&#3608;&#3609;&#3634;&#3588;&#3634;&#3619;&#3650;&#3619;&#3591;&#3648;&#3619;&#3637;&#3618;&#3609;&#3651;&#3609;&#3617;&#3633;&#3608;&#3618;&#3617;&#3611;&#3619;&#3632;&#3606;&#3617;&#3651;&#3594;&#3657;&#3626;&#3617;&#3640;&#3604;&#3610;&#3633;&#3597;&#3594;&#3637;&#3585;&#3619;&#3632;&#3604;&#3634;&#3625; &#3588;&#3619;&#3641;&#3648;&#3585;&#3655;&#3610;&#3648;&#3591;&#3636;&#3609;&#3607;&#3640;&#3585;&#3648;&#3594;&#3657;&#3634;&#3649;&#3621;&#3657;&#3623;&#3592;&#3604;&#3621;&#3591; &#3618;&#3629;&#3604;&#3648;&#3614;&#3637;&#3657;&#3618;&#3609;&#3610;&#3656;&#3629;&#3618; &#3649;&#3621;&#3632;&#3612;&#3641;&#3657;&#3611;&#3585;&#3588;&#3619;&#3629;&#3591;&#3648;&#3614;&#3636;&#3656;&#3591;&#3619;&#3641;&#3657;&#3618;&#3629;&#3604;&#3605;&#3629;&#3609;&#3611;&#3621;&#3634;&#3618;&#3648;&#3607;&#3629;&#3617; &#3649;&#3629;&#3611;&#3609;&#3637;&#3657;&#3649;&#3607;&#3609;&#3626;&#3617;&#3640;&#3604; &#3649;&#3621;&#3632;&#3626;&#3656;&#3591;&#3618;&#3629;&#3604;&#3648;&#3591;&#3636;&#3609;&#3619;&#3634;&#3618;&#3626;&#3633;&#3611;&#3604;&#3634;&#3627;&#3660;&#3606;&#3638;&#3591;&#3612;&#3641;&#3657;&#3611;&#3585;&#3588;&#3619;&#3629;&#3591;&#3607;&#3634;&#3591; LINE &#3607;&#3637;&#3656;&#3610;&#3657;&#3634;&#3609;&#3617;&#3637;&#3629;&#3618;&#3641;&#3656;&#3649;&#3621;&#3657;&#3623; &#3652;&#3617;&#3656;&#3605;&#3657;&#3629;&#3591;&#3621;&#3591;&#3649;&#3629;&#3611;&#3648;&#3614;&#3636;&#3656;&#3617;</p>
+            <ul>
+              <li>&#3588;&#3619;&#3641;&#3649;&#3605;&#3656;&#3621;&#3632;&#3588;&#3609;&#3612;&#3641;&#3585; LINE Official Account &#3586;&#3629;&#3591;&#3605;&#3633;&#3623;&#3648;&#3629;&#3591; &#3619;&#3632;&#3610;&#3610;&#3605;&#3619;&#3623;&#3592; token &#3605;&#3633;&#3657;&#3591; webhook &#3651;&#3627;&#3657;&#3629;&#3633;&#3605;&#3650;&#3609;&#3617;&#3633;&#3605;&#3636; &#3649;&#3621;&#3632;&#3595;&#3656;&#3629;&#3617;&#3651;&#3627;&#3657;&#3652;&#3604;&#3657;&#3592;&#3634;&#3585;&#3627;&#3609;&#3657;&#3634;&#3605;&#3633;&#3657;&#3591;&#3588;&#3656;&#3634;</li>
+              <li>&#3648;&#3586;&#3657;&#3634;&#3619;&#3627;&#3633;&#3626; key &#3586;&#3629;&#3591;&#3649;&#3605;&#3656;&#3621;&#3632;&#3619;&#3657;&#3634;&#3609;&#3604;&#3657;&#3623;&#3618; <strong>AES-256-GCM</strong> &#3649;&#3621;&#3632;&#3605;&#3619;&#3623;&#3592;&#3621;&#3634;&#3618;&#3648;&#3595;&#3655;&#3609; HMAC &#3607;&#3640;&#3585; webhook</li>
+              <li>&#3629;&#3629;&#3585;&#3649;&#3610;&#3610;&#3651;&#3627;&#3657;&#3605;&#3619;&#3623;&#3592;&#3626;&#3629;&#3610;&#3618;&#3657;&#3629;&#3609;&#3627;&#3621;&#3633;&#3591;&#3652;&#3604;&#3657; &#3607;&#3640;&#3585;&#3619;&#3634;&#3618;&#3585;&#3634;&#3619;&#3612;&#3656;&#3634;&#3609;&#3627;&#3609;&#3657;&#3634;&#3618;&#3639;&#3609;&#3618;&#3633;&#3609;&#3607;&#3637;&#3656;&#3649;&#3626;&#3604;&#3591;&#3618;&#3629;&#3604;&#3585;&#3656;&#3629;&#3609;-&#3627;&#3621;&#3633;&#3591; &#3618;&#3585;&#3648;&#3621;&#3636;&#3585;&#3652;&#3604;&#3657; &#3649;&#3621;&#3632;&#3585;&#3634;&#3619;&#3649;&#3585;&#3657;&#3619;&#3634;&#3618;&#3585;&#3634;&#3619;&#3648;&#3585;&#3656;&#3634;&#3606;&#3641;&#3585;&#3610;&#3633;&#3609;&#3607;&#3638;&#3585;&#3648;&#3611;&#3655;&#3609;&#3627;&#3621;&#3633;&#3585;&#3600;&#3634;&#3609;&#3649;&#3607;&#3609;&#3585;&#3634;&#3619;&#3621;&#3610;&#3607;&#3636;&#3657;&#3591;</li>
+              <li>&#3600;&#3634;&#3609;&#3586;&#3657;&#3629;&#3617;&#3641;&#3621; 11 &#3605;&#3634;&#3619;&#3634;&#3591; 6 migration &#3626;&#3656;&#3591;&#3629;&#3629;&#3585; Excel &#3652;&#3604;&#3657; &#3649;&#3621;&#3632;&#3617;&#3637;&#3649;&#3629;&#3611; Android &#3586;&#3629;&#3591;&#3605;&#3633;&#3623;&#3648;&#3604;&#3637;&#3618;&#3623;&#3585;&#3633;&#3609;</li>
+            </ul>
+          </div>
+          <div class="stack">Next.js 16 &middot; React 19 &middot; TypeScript &middot; PostgreSQL &middot; Drizzle ORM &middot; LINE Messaging API &middot; PWA &middot; Android TWA</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <div class="entry-title">
+            <a href="https://github.com/arumaosogi-sudo/digital-muscle" target="_blank" rel="noopener">Digital Muscle</a>
+            <a class="live" href="https://digital-muscle.medicsync.workers.dev" target="_blank" rel="noopener">Live demo &#8599;</a>
+          </div>
+          <div class="entry-year">2026</div>
+        </div>
+        <div class="entry-meta">
+          <span data-en>Team of 2</span>
+          <span data-th>&#3607;&#3637;&#3617; 2 &#3588;&#3609;</span>
+          &mdash; <span class="tag"><span data-en>my role: the whole platform</span><span data-th>&#3627;&#3609;&#3657;&#3634;&#3607;&#3637;&#3656;&#3586;&#3629;&#3591;&#3612;&#3617;: &#3649;&#3614;&#3621;&#3605;&#3615;&#3629;&#3619;&#3660;&#3617;&#3607;&#3633;&#3657;&#3591;&#3627;&#3617;&#3604;</span></span>
+        </div>
+        <div class="entry-body">
+          <div data-en>
+            <p>A course tool built from a lecturer's muscle-physiology textbook. Students join a section by scanning its QR code; instructors build the exams and read the results. I built the platform &mdash; authentication, the API, the database, the instructor dashboard and the 3D module; my teammate built the games.</p>
+            <ul>
+              <li>A REST API of about 54 endpoints across 12 route modules on Cloudflare Workers, over 9 D1 migrations covering attempt integrity, anonymised identities and section capacity</li>
+              <li>Two ways in: Google sign-in restricted to the university domain for students, and a hashed password login for instructors that locks out after 5 failed attempts in 15 minutes</li>
+              <li>An instructor dashboard with QR section management, a Google-Forms-style exam builder, pretest/posttest grading and Excel export</li>
+              <li>A 3D explorer built with three.js: three muscle types, meshopt-compressed models, step-through animations and clickable labelled parts</li>
+              <li>Every route written down in a 507-line shared API contract, so the client and the server could be built against the same document</li>
+            </ul>
+          </div>
+          <div data-th>
+            <p>&#3626;&#3639;&#3656;&#3629;&#3585;&#3634;&#3619;&#3626;&#3629;&#3609;&#3607;&#3637;&#3656;&#3626;&#3619;&#3657;&#3634;&#3591;&#3592;&#3634;&#3585;&#3627;&#3609;&#3633;&#3591;&#3626;&#3639;&#3629;&#3648;&#3619;&#3637;&#3618;&#3609;&#3648;&#3619;&#3639;&#3656;&#3629;&#3591;&#3619;&#3632;&#3610;&#3610;&#3585;&#3621;&#3657;&#3634;&#3617;&#3648;&#3609;&#3639;&#3657;&#3629;&#3586;&#3629;&#3591;&#3629;&#3634;&#3592;&#3634;&#3619;&#3618;&#3660; &#3609;&#3633;&#3585;&#3624;&#3638;&#3585;&#3625;&#3634;&#3626;&#3649;&#3585;&#3609; QR &#3648;&#3614;&#3639;&#3656;&#3629;&#3648;&#3586;&#3657;&#3634; Section &#3629;&#3634;&#3592;&#3634;&#3619;&#3618;&#3660;&#3626;&#3619;&#3657;&#3634;&#3591;&#3586;&#3657;&#3629;&#3626;&#3629;&#3610;&#3649;&#3621;&#3632;&#3604;&#3641;&#3612;&#3621;&#3652;&#3604;&#3657; &#3612;&#3617;&#3619;&#3633;&#3610;&#3612;&#3636;&#3604;&#3594;&#3629;&#3610;&#3626;&#3656;&#3623;&#3609;&#3649;&#3614;&#3621;&#3605;&#3615;&#3629;&#3619;&#3660;&#3617;&#3607;&#3633;&#3657;&#3591;&#3627;&#3617;&#3604; &#3607;&#3633;&#3657;&#3591;&#3619;&#3632;&#3610;&#3610;&#3621;&#3655;&#3629;&#3585;&#3629;&#3636;&#3609; API &#3600;&#3634;&#3609;&#3586;&#3657;&#3629;&#3617;&#3641;&#3621; dashboard &#3629;&#3634;&#3592;&#3634;&#3619;&#3618;&#3660; &#3649;&#3621;&#3632;&#3626;&#3656;&#3623;&#3609; 3D &#3626;&#3656;&#3623;&#3609;&#3648;&#3614;&#3639;&#3656;&#3629;&#3609;&#3619;&#3656;&#3623;&#3617;&#3607;&#3637;&#3617;&#3607;&#3635;&#3650;&#3617;&#3604;&#3641;&#3621;&#3648;&#3585;&#3617;</p>
+            <ul>
+              <li>REST API &#3611;&#3619;&#3632;&#3617;&#3634;&#3603; 54 endpoint &#3651;&#3609; 12 route module &#3610;&#3609; Cloudflare Workers &#3614;&#3619;&#3657;&#3629;&#3617; 9 migration &#3610;&#3609; D1 &#3588;&#3619;&#3629;&#3610;&#3588;&#3621;&#3640;&#3617;&#3588;&#3623;&#3634;&#3617;&#3606;&#3641;&#3585;&#3605;&#3657;&#3629;&#3591;&#3586;&#3629;&#3591;&#3585;&#3634;&#3619;&#3626;&#3629;&#3610; &#3585;&#3634;&#3619;&#3611;&#3585;&#3611;&#3636;&#3604;&#3605;&#3633;&#3623;&#3605;&#3609; &#3649;&#3621;&#3632;&#3588;&#3623;&#3634;&#3617;&#3592;&#3640;&#3586;&#3629;&#3591; Section</li>
+              <li>&#3648;&#3586;&#3657;&#3634;&#3626;&#3641;&#3656;&#3619;&#3632;&#3610;&#3610;&#3626;&#3629;&#3591;&#3607;&#3634;&#3591;: &#3609;&#3633;&#3585;&#3624;&#3638;&#3585;&#3625;&#3634;&#3651;&#3594;&#3657; Google &#3592;&#3635;&#3585;&#3633;&#3604;&#3648;&#3593;&#3614;&#3634;&#3632;&#3650;&#3604;&#3648;&#3617;&#3609;&#3617;&#3627;&#3634;&#3623;&#3636;&#3607;&#3618;&#3634;&#3621;&#3633;&#3618; &#3629;&#3634;&#3592;&#3634;&#3619;&#3618;&#3660;&#3651;&#3594;&#3657;&#3619;&#3627;&#3633;&#3626;&#3612;&#3656;&#3634;&#3609;&#3607;&#3637;&#3656; hash &#3652;&#3623;&#3657; &#3649;&#3621;&#3632;&#3621;&#3655;&#3629;&#3585;&#3648;&#3617;&#3639;&#3656;&#3629;&#3612;&#3636;&#3604;&#3648;&#3585;&#3636;&#3609; 5 &#3588;&#3619;&#3633;&#3657;&#3591;&#3651;&#3609; 15 &#3609;&#3634;&#3607;&#3637;</li>
+              <li>Dashboard &#3629;&#3634;&#3592;&#3634;&#3619;&#3618;&#3660; &#3592;&#3633;&#3604;&#3585;&#3634;&#3619; Section &#3649;&#3621;&#3632; QR &#3626;&#3619;&#3657;&#3634;&#3591;&#3586;&#3657;&#3629;&#3626;&#3629;&#3610;&#3649;&#3610;&#3610; Google Form &#3605;&#3619;&#3623;&#3592;&#3651;&#3627;&#3657;&#3588;&#3632;&#3649;&#3609;&#3609; pretest/posttest &#3649;&#3621;&#3632;&#3626;&#3656;&#3591;&#3629;&#3629;&#3585; Excel</li>
+              <li>&#3650;&#3617;&#3604;&#3641;&#3621; 3D &#3604;&#3657;&#3623;&#3618; three.js &#3585;&#3621;&#3657;&#3634;&#3617;&#3648;&#3609;&#3639;&#3657;&#3629; 3 &#3594;&#3609;&#3636;&#3604; &#3610;&#3637;&#3610;&#3604;&#3657;&#3623;&#3618; meshopt &#3617;&#3637;&#3649;&#3629;&#3609;&#3636;&#3648;&#3617;&#3594;&#3633;&#3609;&#3652;&#3621;&#3656;&#3586;&#3633;&#3657;&#3609; &#3649;&#3621;&#3632;&#3588;&#3621;&#3636;&#3585;&#3604;&#3641;&#3594;&#3639;&#3656;&#3629;&#3594;&#3636;&#3657;&#3609;&#3626;&#3656;&#3623;&#3609;&#3652;&#3604;&#3657;</li>
+              <li>&#3648;&#3586;&#3637;&#3618;&#3609;&#3607;&#3640;&#3585; endpoint &#3652;&#3623;&#3657;&#3651;&#3609; API contract &#3623; 507 &#3610;&#3619;&#3619;&#3607;&#3633;&#3604; &#3651;&#3627;&#3657;&#3615;&#3619;&#3629;&#3609;&#3605;&#3660;&#3649;&#3621;&#3632;&#3627;&#3621;&#3633;&#3591;&#3618;&#3638;&#3604;&#3648;&#3629;&#3585;&#3626;&#3634;&#3619;&#3593;&#3610;&#3633;&#3610;&#3648;&#3604;&#3637;&#3618;&#3623;&#3585;&#3633;&#3609;</li>
+            </ul>
+          </div>
+          <div class="stack">Cloudflare Workers &middot; Hono &middot; Cloudflare D1 &middot; React &middot; TypeScript &middot; three.js &middot; Vitest</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <div class="entry-title">
+            <a href="https://github.com/arumaosogi-sudo/linguakids" target="_blank" rel="noopener">LinguaKids</a>
+            <a class="live" href="https://linguakids-chi.vercel.app" target="_blank" rel="noopener">Live demo &#8599;</a>
+          </div>
+          <div class="entry-year">2026</div>
+        </div>
+        <div class="entry-meta">
+          <span data-en>Solo project &mdash; English practice for Thai children</span>
+          <span data-th>&#3650;&#3611;&#3619;&#3648;&#3592;&#3585;&#3605;&#3660;&#3648;&#3604;&#3637;&#3656;&#3618;&#3623; &mdash; &#3613;&#3638;&#3585;&#3616;&#3634;&#3625;&#3634;&#3629;&#3633;&#3591;&#3585;&#3620;&#3625;&#3626;&#3635;&#3627;&#3619;&#3633;&#3610;&#3648;&#3604;&#3655;&#3585;&#3652;&#3607;&#3618;</span>
+        </div>
+        <div class="entry-body">
+          <div data-en>
+            <p>Vocabulary, listening, speaking and reading practice for kindergarten to primary-school children, built as games with an AI partner they can talk to.</p>
+            <ul>
+              <li>243 levels over a 982-word catalogue in 121 units, graded from Pre-A1 to C1</li>
+              <li>Review is scheduled by <strong>FSRS</strong>, so a word comes back just as the child is about to forget it rather than on a fixed timer</li>
+              <li>Six modes including speaking and reading aloud, scored through speech recognition in the browser</li>
+              <li>The decision records state plainly what the speech scoring cannot do yet &mdash; it measures whether a word was recognised, not how close the accent was</li>
+            </ul>
+          </div>
+          <div data-th>
+            <p>&#3613;&#3638;&#3585;&#3588;&#3635;&#3624;&#3633;&#3614;&#3607;&#3660; &#3615;&#3633;&#3591; &#3614;&#3641;&#3604; &#3629;&#3656;&#3634;&#3609; &#3626;&#3635;&#3627;&#3619;&#3633;&#3610;&#3648;&#3604;&#3655;&#3585;&#3629;&#3609;&#3640;&#3610;&#3634;&#3621;&#3606;&#3638;&#3591;&#3611;&#3619;&#3632;&#3606;&#3617; &#3607;&#3635;&#3648;&#3611;&#3655;&#3609;&#3648;&#3585;&#3617;&#3649;&#3621;&#3632;&#3617;&#3637;&#3648;&#3614;&#3639;&#3656;&#3629;&#3609; AI &#3607;&#3637;&#3656;&#3588;&#3640;&#3618;&#3650;&#3605;&#3657;&#3605;&#3629;&#3610;&#3604;&#3657;&#3623;&#3618;&#3648;&#3626;&#3637;&#3618;&#3591;&#3652;&#3604;&#3657;</p>
+            <ul>
+              <li>243 &#3604;&#3656;&#3634;&#3609; &#3610;&#3609;&#3588;&#3621;&#3633;&#3591;&#3588;&#3635; 982 &#3588;&#3635; 121 &#3627;&#3609;&#3656;&#3623;&#3618; &#3652;&#3621;&#3656;&#3619;&#3632;&#3604;&#3633;&#3610;&#3605;&#3633;&#3657;&#3591;&#3649;&#3605;&#3656; Pre-A1 &#3606;&#3638;&#3591; C1</li>
+              <li>&#3592;&#3633;&#3604;&#3605;&#3634;&#3619;&#3634;&#3591;&#3607;&#3610;&#3607;&#3623;&#3609;&#3604;&#3657;&#3623;&#3618; <strong>FSRS</strong> &#3588;&#3635;&#3592;&#3638;&#3591;&#3585;&#3621;&#3633;&#3610;&#3617;&#3634;&#3605;&#3629;&#3609;&#3651;&#3585;&#3621;&#3657;&#3621;&#3639;&#3617;&#3614;&#3629;&#3604;&#3637; &#3652;&#3617;&#3656;&#3651;&#3594;&#3656;&#3605;&#3634;&#3617;&#3619;&#3629;&#3610;&#3648;&#3623;&#3621;&#3634;&#3605;&#3634;&#3618;&#3605;&#3633;&#3623;</li>
+              <li>&#3648;&#3621;&#3656;&#3609;&#3652;&#3604;&#3657; 6 &#3650;&#3627;&#3617;&#3604; &#3619;&#3623;&#3617;&#3650;&#3627;&#3617;&#3604;&#3614;&#3641;&#3604;&#3649;&#3621;&#3632;&#3629;&#3656;&#3634;&#3609;&#3629;&#3629;&#3585;&#3648;&#3626;&#3637;&#3618;&#3591; &#3605;&#3619;&#3623;&#3592;&#3604;&#3657;&#3623;&#3618; speech recognition &#3651;&#3609;&#3648;&#3610;&#3619;&#3634;&#3623;&#3660;&#3648;&#3595;&#3629;&#3619;&#3660;</li>
+              <li>&#3648;&#3629;&#3585;&#3626;&#3634;&#3619;&#3610;&#3633;&#3609;&#3607;&#3638;&#3585;&#3585;&#3634;&#3619;&#3605;&#3633;&#3604;&#3626;&#3636;&#3609;&#3651;&#3592;&#3610;&#3629;&#3585;&#3586;&#3657;&#3629;&#3592;&#3635;&#3585;&#3633;&#3604;&#3652;&#3623;&#3657;&#3605;&#3619;&#3591; &#3654; &#3623;&#3656;&#3634;&#3619;&#3632;&#3610;&#3610;&#3623;&#3633;&#3604;&#3652;&#3604;&#3657;&#3649;&#3588;&#3656;&#3623;&#3656;&#3634;&#3648;&#3588;&#3619;&#3639;&#3656;&#3629;&#3591;&#3615;&#3633;&#3591;&#3629;&#3629;&#3585;&#3627;&#3619;&#3639;&#3629;&#3652;&#3617;&#3656; &#3618;&#3633;&#3591;&#3652;&#3617;&#3656;&#3651;&#3594;&#3656;&#3588;&#3632;&#3649;&#3609;&#3609;&#3626;&#3635;&#3648;&#3609;&#3637;&#3618;&#3591;</li>
+            </ul>
+          </div>
+          <div class="stack">React &middot; TypeScript &middot; FSRS &middot; Web Speech API &middot; Gemini API &middot; Vercel</div>
         </div>
       </div>
 
@@ -303,7 +422,7 @@
       <div class="entry">
         <div class="entry-head">
           <div class="entry-title">
-            <a href="https://github.com/arumaosogi-sudo/worky3-api" target="_blank" rel="noopener">Expense Tracker API</a>
+            <a href="https://github.com/arumaosogi-sudo/expense-tracker-api" target="_blank" rel="noopener">Expense Tracker API</a>
           </div>
           <div class="entry-year">2026</div>
         </div>
