@@ -4,429 +4,520 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nitiphum Hongson — Software Engineering Student</title>
-<meta name="description" content="Third-year Software Engineering student at Mae Fah Luang University. I build backends, APIs, and the tests that keep them honest.">
+<meta name="description" content="Nitiphum Hongson — third-year software engineering student at Mae Fah Luang University. Backends, APIs, and the tests that keep them honest.">
+
+<meta property="og:type" content="website">
 <meta property="og:title" content="Nitiphum Hongson — Software Engineering Student">
 <meta property="og:description" content="I build backends, APIs, and the tests that keep them honest.">
-<meta property="og:type" content="website">
 <meta property="og:url" content="https://arumaosogi-sudo.github.io/portfolio/">
-<meta property="og:site_name" content="Nitiphum Hongson">
 <meta property="og:image" content="https://arumaosogi-sudo.github.io/portfolio/og-card.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://arumaosogi-sudo.github.io/portfolio/og-card.png">
 <link rel="canonical" href="https://arumaosogi-sudo.github.io/portfolio/">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='88'>&#128221;</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='88'>&#128187;</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@1&family=IBM+Plex+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
-  html{color-scheme:dark}
   :root{
-    --paper:#1a1917;
-    --ink:#ece9e3;
-    --ink-soft:#b0aba3;
-    --ink-faint:#948e84;
-    --rule:#302d29;
-    --rule-soft:#262421;
-    --accent:#c9a961;
-    --accent-soft:#2b2419;
-    --sans:'Segoe UI','Leelawadee UI',-apple-system,BlinkMacSystemFont,Inter,Roboto,sans-serif;
+    --cream:#FBF8F6;
+    --blush:#F3DAD3;
+    --ink:#171412;
+    --ink-soft:#6E6560;
+    --ink-faint:#776E68;          /* 4.71:1 on cream — the small meta text needs AA */
+    --accent:#C0574A;             /* display only: large type, 4.22:1 */
+    --accent-deep:#AC493D;        /* small type on the live pill, 4.91:1 */
+    --slate:#243043;
+    --line:#E8DFD9;
+    --card:#FFFFFF;
+    --sans:'Plus Jakarta Sans','IBM Plex Sans Thai',system-ui,-apple-system,sans-serif;
+    --serif:'Instrument Serif','IBM Plex Sans Thai',Georgia,serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  /* overflow-x:clip rather than hidden: the hero's glow is a pseudo-element that
+     reaches past the right edge, and `hidden` on body alone still lets the page
+     scroll sideways to it. `clip` cuts it without creating a scroll container. */
+  html{scroll-behavior:smooth;color-scheme:light;overflow-x:clip}
   body{
-    background:var(--paper);color:var(--ink-soft);font-family:var(--sans);
-    font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;
+    background:var(--cream);color:var(--ink-soft);
+    font-family:var(--sans);font-size:17px;line-height:1.65;
+    -webkit-font-smoothing:antialiased;overflow-x:clip;
   }
-  a{color:var(--ink);text-decoration:none}
-  ::selection{background:var(--accent-soft)}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  ::selection{background:#F6D9D2;color:var(--ink)}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
 
-  .wrap{max-width:1080px;margin:0 auto;padding:0 clamp(24px,5vw,52px)}
-  .layout{display:flex;gap:70px;align-items:flex-start}
-  @media(max-width:920px){.layout{display:block}}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
 
-  /* ---------------- left ---------------- */
-  .left{
-    position:sticky;top:0;height:100vh;flex:0 0 36%;
-    display:flex;flex-direction:column;justify-content:center;padding:72px 0;
+  /* ───────────────────────── nav ───────────────────────── */
+  .topbar{position:sticky;top:0;z-index:50;padding:18px 0 10px;
+          background:linear-gradient(var(--cream) 62%,rgba(251,248,246,0));}
+  .bar{display:flex;align-items:center;justify-content:center;gap:14px;position:relative}
+  .pill-nav{display:flex;align-items:center;gap:4px;background:var(--card);
+            border:1px solid var(--line);border-radius:999px;padding:5px 6px 5px 5px;
+            box-shadow:0 1px 2px rgba(23,20,18,.04)}
+  .mark{width:30px;height:30px;border-radius:999px;background:var(--slate);color:#fff;
+        display:grid;place-items:center;font-weight:700;font-size:13px;letter-spacing:-.02em}
+  .pill-nav a{padding:7px 14px;border-radius:999px;font-size:14.5px;font-weight:500;color:var(--ink-soft)}
+  .pill-nav a:hover{color:var(--ink)}
+  .pill-nav a.on{background:#F3EEEA;color:var(--ink)}
+  .lang{position:absolute;right:0;display:flex;gap:2px;background:var(--card);
+        border:1px solid var(--line);border-radius:999px;padding:4px}
+  .lang button{border:0;background:none;cursor:pointer;font:inherit;font-size:13px;font-weight:500;
+               color:var(--ink-faint);padding:4px 11px;border-radius:999px}
+  .lang button.on{background:var(--slate);color:#fff}
+
+  /* ───────────────────────── hero ───────────────────────── */
+  .hero{position:relative;padding:34px 0 0}
+  .hero::before{
+    content:"";position:absolute;inset:-120px -14% -60px 28%;z-index:-1;
+    background:radial-gradient(58% 62% at 58% 42%,var(--blush) 0%,rgba(243,218,211,.52) 42%,rgba(251,248,246,0) 72%);
   }
-  @media(max-width:920px){.left{position:static;height:auto;padding:64px 0 4px}}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1.22fr) minmax(0,.78fr);
+             gap:clamp(20px,3vw,40px);align-items:end}
+  .badge{display:inline-flex;align-items:center;gap:8px;background:var(--card);
+         border:1px solid var(--line);border-radius:999px;padding:7px 15px 7px 11px;
+         font-size:13.5px;font-weight:500;color:var(--ink-soft);margin-bottom:26px}
+  .badge .dot{width:7px;height:7px;border-radius:999px;background:#4F9B6A;
+              box-shadow:0 0 0 3px rgba(79,155,106,.17)}
 
-  .avatar{width:84px;height:84px;border-radius:50%;object-fit:cover;margin-bottom:26px;display:block;
-          border:1px solid var(--rule)}
-  h1{font-size:clamp(32px,4.4vw,40px);line-height:1.12;color:var(--ink);font-weight:650;letter-spacing:-.015em}
-  .role{font-size:17px;color:var(--ink-soft);margin-top:9px}
-  .tagline{margin-top:18px;max-width:23em;color:var(--ink-faint);font-size:16px;line-height:1.6}
-  .avail{display:inline-block;margin-top:22px;font-size:14px;color:var(--accent);
-         border-bottom:1px solid var(--accent-soft);padding-bottom:3px}
+  h1{font-size:clamp(34px,4.5vw,56px);line-height:1.06;letter-spacing:-.03em;
+     font-weight:700;color:var(--ink);max-width:14ch}
+  h1 .em{display:block;font-family:var(--serif);font-weight:400;font-style:italic;
+         color:var(--accent);letter-spacing:-.012em;font-size:1.06em;line-height:1.08}
+  .lede{margin-top:24px;max-width:34em;font-size:17px;color:var(--ink-soft)}
+  .cta{display:flex;flex-wrap:wrap;gap:11px;margin-top:32px;padding-bottom:58px}
+  .btn{display:inline-flex;align-items:center;gap:9px;border-radius:999px;
+       padding:13px 22px;font-size:15px;font-weight:600;border:1px solid transparent}
+  .btn-dark{background:var(--slate);color:#fff}
+  .btn-dark:hover{background:#2F3E55}
+  .btn-ghost{background:var(--card);border-color:var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:#D8CCC4}
 
-  nav{margin-top:44px;display:flex;flex-direction:column;gap:2px}
-  @media(max-width:920px){nav{display:none}}
-  nav a{font-size:15px;color:var(--ink-faint);padding:5px 0;width:fit-content;
-        border-bottom:1px solid transparent;transition:color .15s,border-color .15s}
-  nav a:hover{color:var(--ink)}
-  nav a.on{color:var(--ink);border-bottom-color:var(--accent)}
+  /* The source photo is a square snapshot with foliage behind it, not a cut-out.
+     Desaturating it and dissolving every edge into the blush field gets the
+     reference's floating-portrait read without a real background removal. */
+  .portrait{position:relative;align-self:end;margin-bottom:-14px}
+  .portrait img{
+    width:100%;max-width:430px;margin-left:auto;
+    filter:grayscale(1) contrast(1.12) brightness(1.06);
+    -webkit-mask-image:radial-gradient(60% 64% at 50% 40%,#000 38%,rgba(0,0,0,.72) 62%,transparent 84%);
+            mask-image:radial-gradient(60% 64% at 50% 40%,#000 38%,rgba(0,0,0,.72) 62%,transparent 84%);
+  }
 
-  .meta{margin-top:40px;font-size:15px;line-height:1.9}
-  .meta a{color:var(--ink-soft);border-bottom:1px solid var(--rule);transition:border-color .15s,color .15s}
-  .meta a:hover{color:var(--ink);border-bottom-color:var(--accent)}
-  .meta div{display:flex;gap:10px;align-items:baseline}
-  .meta .k{color:var(--ink-faint);flex:0 0 62px;font-size:13.5px}
+  /* ───────────────────────── sections ───────────────────────── */
+  section{padding:76px 0 0}
+  .head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;
+        padding-bottom:22px;border-bottom:1px solid var(--line);margin-bottom:38px}
+  .head h2{font-size:clamp(25px,3vw,33px);line-height:1.15;letter-spacing:-.022em;
+           font-weight:700;color:var(--ink)}
+  .head .count{font-size:14px;color:var(--ink-faint);white-space:nowrap}
 
-  .cv-links{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px}
-  .cv-links a{font-size:14px;color:var(--ink-soft);border:1px solid var(--rule);
-              border-radius:4px;padding:8px 15px;transition:border-color .15s,color .15s}
-  .cv-links a:hover{border-color:var(--accent);color:var(--accent)}
+  .prose p{max-width:62ch;margin-bottom:17px}
+  .prose p:last-child{margin-bottom:0}
+  .prose strong{color:var(--ink);font-weight:600}
 
-  /* ---------------- right ---------------- */
-  .right{flex:1;padding:118px 0 96px;min-width:0}
-  @media(max-width:920px){.right{padding:40px 0 72px}}
-  section{margin-bottom:88px;scroll-margin-top:20px}
-  @media(max-width:920px){section{margin-bottom:66px}}
+  /* projects — editorial rows, not a card grid */
+  .proj{padding:34px 0;border-bottom:1px solid var(--line)}
+  .proj:first-of-type{padding-top:0}
+  .proj:last-of-type{border-bottom:0}
+  .proj-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 14px}
+  .proj-name{font-size:clamp(23px,2.5vw,30px);font-weight:700;letter-spacing:-.022em;color:var(--ink)}
+  .proj-name a{border-bottom:2px solid transparent}
+  .proj-name a:hover{border-bottom-color:var(--accent)}
+  .proj-kind{font-size:14.5px;color:var(--ink-faint)}
+  .live{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;
+        color:var(--accent-deep);background:#FBEEEA;border:1px solid #F0D7D0;
+        border-radius:999px;padding:4px 12px}
+  .live:hover{background:#F7E3DD}
+  .proj-body{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);
+             gap:12px 46px;margin-top:16px}
+  .proj-body p{max-width:58ch}
+  .facts{list-style:none;font-size:15.5px}
+  .facts li{position:relative;padding-left:18px;margin-bottom:7px}
+  .facts li::before{content:"";position:absolute;left:0;top:.68em;width:7px;height:1px;background:var(--accent)}
+  .facts strong{color:var(--ink);font-weight:600}
+  .tech{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
+  .tech span{font-size:12.5px;color:var(--ink-soft);background:#F4EFEB;
+             border-radius:6px;padding:4px 9px}
+  .note{margin-top:14px;font-size:14px;color:var(--ink-faint);max-width:58ch}
+  .note code{font-size:13px;color:var(--ink-soft);background:#F4EFEB;border-radius:4px;padding:1px 5px}
 
-  .sec-title{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);
-             font-weight:600;margin-bottom:26px;padding-bottom:11px;border-bottom:1px solid var(--rule)}
+  /* skills */
+  .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:28px 40px}
+  .skill h3{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:5px}
+  .skill p{font-size:15.5px;color:var(--ink-soft)}
 
-  p{margin-bottom:17px}
-  p:last-child{margin-bottom:0}
-  strong{color:var(--ink);font-weight:600}
+  /* education */
+  .edu-top{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 18px}
+  .edu-top h3{font-size:20px;font-weight:700;color:var(--ink);letter-spacing:-.015em}
+  .edu-top .yr{font-size:14.5px;color:var(--ink-faint)}
+  .edu-sub{font-size:15.5px;color:var(--ink-soft);margin:6px 0 14px}
 
-  .entry{padding:26px 0;border-bottom:1px solid var(--rule-soft)}
-  .entry:first-of-type{padding-top:4px}
-  .entry:last-of-type{border-bottom:0;padding-bottom:4px}
-  .entry-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
-  .entry-title{font-size:19px;color:var(--ink);font-weight:600;line-height:1.35}
-  .entry-title a{border-bottom:1px solid var(--rule);transition:border-color .15s}
-  .entry-title a:hover{border-bottom-color:var(--accent)}
-  .entry-title .live{font-size:12.5px;font-weight:500;color:var(--accent);background:var(--accent-soft);
-       border:1px solid var(--accent-soft);border-bottom-color:var(--accent-soft);border-radius:999px;
-       padding:2px 10px;margin-left:10px;white-space:nowrap;vertical-align:2px}
-  .entry-title .live:hover{border-color:var(--accent);border-bottom-color:var(--accent)}
-  .demo-note{margin-top:10px;font-size:14px;color:var(--ink-faint)}
-  .demo-note code{color:var(--ink-soft);font-size:13.5px}
-  .entry-year{font-size:14px;color:var(--ink-faint);white-space:nowrap}
-  .entry-meta{font-size:15px;color:var(--ink-faint);margin-top:5px}
-  .entry-meta .tag{color:var(--accent)}
-  .entry-body{margin-top:12px;font-size:16px}
-  .entry-body ul{list-style:none;margin-top:9px}
-  .entry-body li{padding-left:17px;position:relative;margin-bottom:6px}
-  .entry-body li::before{content:"";position:absolute;left:0;top:.72em;width:6px;height:1px;background:var(--ink-faint)}
-  .stack{margin-top:14px;font-size:14px;color:var(--ink-faint)}
+  /* contact */
+  .closing{font-size:clamp(23px,2.9vw,32px);line-height:1.3;letter-spacing:-.02em;
+           color:var(--ink);font-weight:600;max-width:17ch}
+  .closing .em{font-family:var(--serif);font-weight:400;font-style:italic;color:var(--accent);font-size:1.1em}
+  .reach{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+         gap:20px 34px;margin-top:34px;padding-top:28px;border-top:1px solid var(--line)}
+  .reach .k{display:block;font-size:13.5px;color:var(--ink-faint);margin-bottom:3px}
+  .reach a{font-size:16.5px;font-weight:600;color:var(--ink);border-bottom:1px solid var(--line)}
+  .reach a:hover{border-bottom-color:var(--accent)}
+  .reach a + a{margin-left:16px}
 
-  .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px 34px}
-  .skill h3{font-size:14px;color:var(--ink);margin-bottom:5px;font-weight:600}
-  .skill p{font-size:15.5px;color:var(--ink-faint);margin:0;line-height:1.6}
+  footer{margin-top:72px;padding:26px 0 40px;border-top:1px solid var(--line);
+         font-size:14px;color:var(--ink-faint);
+         display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:space-between}
 
-  .contact-list{margin-top:6px;font-size:17px;line-height:2.1}
-  .contact-list a{border-bottom:1px solid var(--rule);transition:border-color .15s}
-  .contact-list a:hover{border-bottom-color:var(--accent)}
-  .contact-list .k{color:var(--ink-faint);font-size:14px;display:inline-block;min-width:78px}
+  /* bilingual */
+  html[lang="en"] [data-th],html[lang="th"] [data-en]{display:none}
+  html[lang="th"] body{font-family:'IBM Plex Sans Thai','Plus Jakarta Sans',sans-serif}
+  html[lang="th"] h1 .em,html[lang="th"] .closing .em{
+    font-family:'IBM Plex Sans Thai',sans-serif;font-style:normal;font-weight:300;font-size:1em}
+  /* Thai runs longer than the English and has no italic, so it needs its own
+     measure and a lighter weight to carry the accent line. */
+  html[lang="th"] h1{line-height:1.26;letter-spacing:-.01em;max-width:21ch;
+                     font-size:clamp(28px,3.5vw,44px)}
+  html[lang="th"] .closing{max-width:22ch;line-height:1.5}
 
-  footer{font-size:14px;color:var(--ink-faint);padding-bottom:60px}
+  /* One orchestrated entrance, hero only. Gated behind a class that script adds,
+     so the hero is visible by default — if the animation never runs, nothing is
+     left stuck at opacity 0. */
+  @media (prefers-reduced-motion:no-preference){
+    .js .rise{opacity:0;transform:translateY(14px);animation:rise .62s cubic-bezier(.22,.7,.3,1) forwards}
+    .js .d1{animation-delay:.05s}.js .d2{animation-delay:.14s}.js .d3{animation-delay:.23s}
+    .js .d4{animation-delay:.32s}.js .d5{animation-delay:.18s}
+    @keyframes rise{to{opacity:1;transform:none}}
+  }
 
-  .lang{position:fixed;top:20px;right:20px;z-index:40;display:flex;gap:2px;
-        background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:2px}
-  .lang button{font-size:13px;padding:5px 12px;background:none;border:0;border-radius:3px;
-               color:var(--ink-faint);cursor:pointer;font-family:inherit;transition:all .15s}
-  .lang button.on{background:var(--accent-soft);color:var(--accent)}
-
-  [data-th]{display:none}
-  html[lang="th"] [data-en]{display:none}
-  html[lang="th"] [data-th]{display:revert}
-
-  .reveal{opacity:0;transform:translateY(12px);transition:opacity .45s ease,transform .45s ease}
-  .reveal.in{opacity:1;transform:none}
-  @media(prefers-reduced-motion:reduce){
-    html{scroll-behavior:auto}
-    .reveal{opacity:1;transform:none;transition:none}
+  @media (max-width:880px){
+    .hero-grid{grid-template-columns:1fr;align-items:start}
+    .hero::before{inset:-140px -12% auto -8%;height:560px}
+    /* Text first on a phone: the headline is the thing worth reading, and a
+       portrait this size would push it under the fold. */
+    .portrait{margin:4px 0 0}
+    .portrait img{max-width:236px;margin:0;
+      -webkit-mask-image:radial-gradient(56% 58% at 50% 42%,#000 42%,rgba(0,0,0,.7) 64%,transparent 84%);
+              mask-image:radial-gradient(56% 58% at 50% 42%,#000 42%,rgba(0,0,0,.7) 64%,transparent 84%)}
+    .cta{padding-bottom:14px}
+    .proj-body{grid-template-columns:1fr;gap:14px}
+    .lang{position:static}
+    .bar{flex-wrap:wrap}
+  }
+  @media (max-width:560px){
+    body{font-size:16px}
+    .pill-nav a{padding:7px 10px;font-size:13.5px}
+    section{padding:58px 0 0}
   }
 </style>
 </head>
 <body>
 
-<div class="lang">
-  <button id="btn-en" class="on" onclick="setLang('en')">EN</button>
-  <button id="btn-th" onclick="setLang('th')">ไทย</button>
+<div class="topbar">
+  <div class="wrap bar">
+    <nav class="pill-nav" id="nav">
+      <span class="mark" aria-hidden="true">N</span>
+      <a href="#work" class="on"><span data-en>Work</span><span data-th>ผลงาน</span></a>
+      <a href="#about"><span data-en>About</span><span data-th>เกี่ยวกับ</span></a>
+      <a href="#skills"><span data-en>Skills</span><span data-th>ทักษะ</span></a>
+      <a href="#contact"><span data-en>Contact</span><span data-th>ติดต่อ</span></a>
+    </nav>
+    <div class="lang">
+      <button id="btn-en" class="on" onclick="setLang('en')">EN</button>
+      <button id="btn-th" onclick="setLang('th')">ไทย</button>
+    </div>
+  </div>
 </div>
 
 <div class="wrap">
-<div class="layout">
 
-  <!-- ==================== LEFT ==================== -->
-  <header class="left">
-    <img class="avatar" src="profile.jpg" alt="Nitiphum Hongson">
-    <h1><span data-en>Nitiphum Hongson</span><span data-th>นิติภูมิ ห่วงศร</span></h1>
-    <div class="role">
-      <span data-en>Software Engineering student</span>
-      <span data-th>นักศึกษาวิศวกรรมซอฟต์แวร์</span>
+  <!-- ══════════════ hero ══════════════ -->
+  <div class="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="badge rise d1">
+          <span class="dot" aria-hidden="true"></span>
+          <span data-en>Open to part-time and freelance work</span>
+          <span data-th>รับงาน part-time และฟรีแลนซ์</span>
+        </div>
+
+        <h1 class="rise d2">
+          <span data-en>I build backends,<br>APIs, and the tests<span class="em">that keep them honest.</span></span>
+          <span data-th>ผมทำหลังบ้าน ทำ API<br>และเขียนเทสต์<span class="em">ที่คอยจับผิดมันเอง</span></span>
+        </h1>
+
+        <p class="lede rise d3">
+          <span data-en>Hi, I'm Nitiphum — a third-year software engineering student at Mae Fah Luang University. Three of the projects below are running right now, and you can open them.</span>
+          <span data-th>สวัสดีครับ ผมนิติภูมิ นักศึกษาวิศวกรรมซอฟต์แวร์ชั้นปีที่ 3 มหาวิทยาลัยแม่ฟ้าหลวง สามโปรเจกต์ด้านล่างรันอยู่จริงตอนนี้ และกดเข้าไปดูได้เลย</span>
+        </p>
+
+        <div class="cta rise d4">
+          <a class="btn btn-dark" href="#work">
+            <span data-en>See the work</span><span data-th>ดูผลงาน</span>
+          </a>
+          <a class="btn btn-ghost" href="Nitiphum-Hongson-CV-EN.pdf" download>
+            <span data-en>Download CV</span><span data-th>ดาวน์โหลด CV</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="portrait rise d5">
+        <img src="profile.jpg" alt="Nitiphum Hongson" width="720" height="720">
+      </div>
     </div>
-    <p class="tagline">
-      <span data-en>I build backends, APIs, and the tests that keep them honest.</span>
-      <span data-th>ผมทำหลังบ้าน ทำ API และเขียนเทสต์ที่คอยจับผิดมันเอง</span>
-    </p>
-    <div class="avail">
-      <span data-en>Available for part-time &amp; freelance work</span>
-      <span data-th>รับงาน part-time และฟรีแลนซ์</span>
+  </div>
+
+  <!-- ══════════════ work ══════════════ -->
+  <section id="work">
+    <div class="head">
+      <h2><span data-en>Selected work</span><span data-th>ผลงานที่เลือกมา</span></h2>
+      <div class="count"><span data-en>Three of the four are running right now</span><span data-th>สามในสี่ตัวนี้รันอยู่จริงตอนนี้</span></div>
     </div>
 
-    <nav id="nav">
-      <a href="#about" class="on"><span data-en>About</span><span data-th>เกี่ยวกับผม</span></a>
-      <a href="#skills"><span data-en>Skills</span><span data-th>ทักษะ</span></a>
-      <a href="#work"><span data-en>Projects</span><span data-th>ผลงาน</span></a>
-      <a href="#education"><span data-en>Education</span><span data-th>การศึกษา</span></a>
-      <a href="#contact"><span data-en>Contact</span><span data-th>ติดต่อ</span></a>
-    </nav>
+    <!-- Task Board -->
+    <article class="proj">
+      <div class="proj-top">
+        <div class="proj-name"><a href="https://github.com/arumaosogi-sudo/task-board" target="_blank" rel="noopener">Task Board</a></div>
+        <a class="live" href="https://taskboard-aruma-web.onrender.com" target="_blank" rel="noopener">
+          <span data-en>Open live</span><span data-th>เปิดเว็บจริง</span> ↗
+        </a>
+        <div class="proj-kind"><span data-en>Solo project, built end to end</span><span data-th>โปรเจกต์เดี่ยว ทำตั้งแต่ต้นจนจบ</span></div>
+      </div>
+      <div class="proj-body">
+        <div>
+          <p data-en>Several people write the same report at the same time and see each other's cursors. The merging is conflict-free through Yjs CRDTs over a WebSocket that shares a port with the REST API, so no edit waits on a lock.</p>
+          <p data-th>หลายคนเขียนรายงานฉบับเดียวกันพร้อมกันและเห็นเคอร์เซอร์ของกันและกัน รวมข้อมูลโดยไม่ชนกันด้วย Yjs CRDT ผ่าน WebSocket ที่ใช้พอร์ตร่วมกับ REST API จึงไม่มีการแก้ไขไหนต้องรอล็อก</p>
+          <div class="tech">
+            <span>NestJS</span><span>Prisma</span><span>PostgreSQL</span><span>React</span>
+            <span>TypeScript</span><span>Yjs</span><span>Docker</span>
+          </div>
+        </div>
+        <ul class="facts">
+          <li data-en><strong>65 REST endpoints</strong> across 13 modules, over 15 Prisma models</li>
+          <li data-th><strong>REST API 65 endpoint</strong> ใน 13 โมดูล บน 15 Prisma model</li>
+          <li data-en>Owner / Editor / Viewer enforced <strong>server-side on every action</strong></li>
+          <li data-th>สิทธิ์ Owner / Editor / Viewer บังคับ<strong>ที่เซิร์ฟเวอร์ทุกคำสั่ง</strong></li>
+          <li data-en><strong>386 test cases</strong> gated by CI against a real PostgreSQL</li>
+          <li data-th><strong>เทสต์ 386 เคส</strong> ที่ CI บังคับให้ผ่านบน PostgreSQL จริง</li>
+        </ul>
+      </div>
+      <p class="note">
+        <span data-en>Demo sign-in <code>demo@task-board.app</code> / <code>demo-task-board-2026</code>. The free server sleeps when idle, so the first load can take about a minute.</span>
+        <span data-th>เข้าสู่ระบบตัวอย่าง <code>demo@task-board.app</code> / <code>demo-task-board-2026</code> เซิร์ฟเวอร์ฟรีจะหลับเมื่อไม่มีคนใช้ ครั้งแรกจึงอาจรอราวหนึ่งนาที</span>
+      </p>
+    </article>
 
-    <div class="meta">
-      <div><span class="k">Email</span><a href="mailto:aruma.osogi@gmail.com">aruma.osogi@gmail.com</a></div>
-      <div><span class="k"><span data-en>Phone</span><span data-th>โทร</span></span><a href="tel:+66661097439">066-109-7439</a></div>
-      <div><span class="k">GitHub</span><a href="https://github.com/arumaosogi-sudo" target="_blank" rel="noopener">arumaosogi-sudo</a></div>
+    <!-- Classroom Savings Bank -->
+    <article class="proj">
+      <div class="proj-top">
+        <div class="proj-name"><a href="https://github.com/arumaosogi-sudo/classroom-savings-bank" target="_blank" rel="noopener">Classroom Savings Bank</a></div>
+        <a class="live" href="https://kid-savings-bank.vercel.app" target="_blank" rel="noopener">
+          <span data-en>Open live</span><span data-th>เปิดเว็บจริง</span> ↗
+        </a>
+        <div class="proj-kind"><span data-en>Solo project, web and Android</span><span data-th>โปรเจกต์เดี่ยว ทำทั้งเว็บและ Android</span></div>
+      </div>
+      <div class="proj-body">
+        <div>
+          <p data-en>Thai primary schools keep a classroom savings bank in a paper passbook. This replaces the book and sends each parent a weekly balance card inside LINE, the app their family already has, so there is nothing to install.</p>
+          <p data-th>โรงเรียนประถมไทยทำธนาคารห้องเรียนด้วยสมุดบัญชีกระดาษ แอปนี้แทนสมุดเล่มนั้น และส่งยอดเงินรายสัปดาห์ถึงผู้ปกครองทาง LINE ที่บ้านมีอยู่แล้ว จึงไม่ต้องลงแอปเพิ่ม</p>
+          <div class="tech">
+            <span>Next.js 16</span><span>React 19</span><span>TypeScript</span>
+            <span>PostgreSQL</span><span>Drizzle</span><span>LINE Messaging API</span>
+          </div>
+        </div>
+        <ul class="facts">
+          <li data-en>Every teacher connects <strong>their own LINE account</strong>; the app registers and repairs the webhook itself</li>
+          <li data-th>ครูแต่ละคนผูก <strong>LINE ของตัวเอง</strong> แอปตั้งและซ่อม webhook ให้เอง</li>
+          <li data-en>Channel keys encrypted at rest with <strong>AES-256-GCM</strong>, webhooks verified by HMAC</li>
+          <li data-th>เข้ารหัส key ด้วย <strong>AES-256-GCM</strong> และตรวจลายเซ็น HMAC ทุก webhook</li>
+          <li data-en>Reversals recorded as <strong>visible audit entries</strong>, never deletions</li>
+          <li data-th>การแก้รายการบันทึกเป็น<strong>หลักฐานที่มองเห็นได้</strong> ไม่ใช่การลบทิ้ง</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- Digital Muscle -->
+    <article class="proj">
+      <div class="proj-top">
+        <div class="proj-name"><a href="https://github.com/arumaosogi-sudo/digital-muscle" target="_blank" rel="noopener">Digital Muscle</a></div>
+        <a class="live" href="https://digital-muscle.medicsync.workers.dev" target="_blank" rel="noopener">
+          <span data-en>Open live</span><span data-th>เปิดเว็บจริง</span> ↗
+        </a>
+        <div class="proj-kind"><span data-en>Team of two. My scope was the platform</span><span data-th>ทีมสองคน ผมรับผิดชอบส่วนแพลตฟอร์ม</span></div>
+      </div>
+      <div class="proj-body">
+        <div>
+          <p data-en>A course tool built from a lecturer's muscle-physiology textbook. Students join a section by scanning its QR code; instructors build the exams and read the results. I built the authentication, the API, the database, the instructor dashboard and the 3D module. My teammate built the games.</p>
+          <p data-th>สื่อการสอนที่สร้างจากหนังสือเรียนเรื่องระบบกล้ามเนื้อของอาจารย์ นักศึกษาสแกน QR เพื่อเข้า Section อาจารย์สร้างข้อสอบและดูผลได้ ผมทำระบบล็อกอิน API ฐานข้อมูล แดชบอร์ดอาจารย์ และส่วน 3D ส่วนเพื่อนร่วมทีมทำเกม</p>
+          <div class="tech">
+            <span>Cloudflare Workers</span><span>Hono</span><span>D1</span>
+            <span>React</span><span>TypeScript</span><span>three.js</span>
+          </div>
+        </div>
+        <ul class="facts">
+          <li data-en>About <strong>54 endpoints</strong> across 12 route modules, over 9 database migrations</li>
+          <li data-th>ราว <strong>54 endpoint</strong> ใน 12 route module บน 9 migration</li>
+          <li data-en>Google sign-in <strong>restricted to the university domain</strong>; instructor logins lock after 5 failed tries</li>
+          <li data-th>ล็อกอิน Google <strong>จำกัดเฉพาะโดเมนมหาวิทยาลัย</strong> บัญชีอาจารย์ล็อกเมื่อผิด 5 ครั้ง</li>
+          <li data-en>A <strong>3D muscle explorer</strong> in three.js with clickable labelled parts</li>
+          <li data-th><strong>โมดูลสำรวจกล้ามเนื้อ 3 มิติ</strong> ด้วย three.js คลิกดูชื่อแต่ละชิ้นส่วนได้</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- SAGA -->
+    <article class="proj">
+      <div class="proj-top">
+        <div class="proj-name"><a href="https://github.com/nitiphum01/SAGA-test" target="_blank" rel="noopener">SAGA</a></div>
+        <div class="proj-kind"><span data-en>Solo Flutter project</span><span data-th>แอป Flutter ที่ทำคนเดียว</span></div>
+      </div>
+      <div class="proj-body">
+        <div>
+          <p data-en>A marketplace where students buy and sell from each other and message the seller without leaving the listing.</p>
+          <p data-th>ตลาดซื้อขายของนักศึกษา ที่ทักหาคนขายได้โดยไม่ต้องออกจากหน้าสินค้า</p>
+          <div class="tech">
+            <span>Flutter</span><span>Dart</span><span>Firebase</span>
+            <span>Cloud Functions</span><span>go_router</span>
+          </div>
+        </div>
+        <ul class="facts">
+          <li data-en><strong>12 screens in 5 feature modules</strong>, with the service layer kept out of the UI</li>
+          <li data-th><strong>12 หน้าจอใน 5 feature module</strong> แยกชั้น service ออกจาก UI</li>
+          <li data-en>A Cloud Function fires on a new chat message and <strong>pushes it to the recipient's devices</strong></li>
+          <li data-th>Cloud Function ทำงานเมื่อมีข้อความใหม่ และ<strong>ส่ง push ถึงเครื่องผู้รับ</strong></li>
+          <li data-en>Thai and English from the first screen</li>
+          <li data-th>รองรับไทยและอังกฤษตั้งแต่หน้าจอแรก</li>
+        </ul>
+      </div>
+    </article>
+  </section>
+
+  <!-- ══════════════ about ══════════════ -->
+  <section id="about">
+    <div class="head">
+      <h2><span data-en>About</span><span data-th>เกี่ยวกับผม</span></h2>
     </div>
-
-    <div class="cv-links">
-      <a href="Nitiphum-Hongson-CV-EN.pdf" download><span data-en>Download CV</span><span data-th>ดาวน์โหลด CV (EN)</span></a>
-      <a href="Nitiphum-Hongson-CV-TH.pdf" download><span data-en>CV in Thai</span><span data-th>ดาวน์โหลด CV (ไทย)</span></a>
-    </div>
-  </header>
-
-  <!-- ==================== RIGHT ==================== -->
-  <main class="right">
-
-    <section id="about" class="reveal">
-      <div class="sec-title"><span data-en>About</span><span data-th>เกี่ยวกับผม</span></div>
+    <div class="prose">
       <div data-en>
         <p>I'm a third-year Software Engineering student at <strong>Mae Fah Luang University</strong>. Most of what I know came from building things that had to actually run, not from lectures.</p>
-        <p>My main project is <strong>Task Board</strong> — a web app where several people edit the same document at the same time and see each other's cursors. I built all of it myself: the API, the database schema, authentication, the front end, and the tests.</p>
-        <p>It taught me that the interesting part of software isn't the happy path. It's what happens when two people type in the same paragraph, when a token expires mid-request, or when someone sends a field the API never expected. So that's what I pay attention to now — <strong>validate the input, name every failure, and test it before calling it done.</strong></p>
+        <p>Task Board taught me that the interesting part of software isn't the happy path. It's what happens when two people type in the same paragraph, when a token expires mid-request, or when someone sends a field the API never expected.</p>
+        <p>So that's what I pay attention to now: <strong>validate the input, name every failure, and test it before calling it done.</strong></p>
         <p>I'm looking for part-time or freelance work I can do alongside my degree. Happy to start small and finish what I take on.</p>
       </div>
       <div data-th>
         <p>ผมเป็นนักศึกษาชั้นปีที่ 3 สาขาวิศวกรรมซอฟต์แวร์ <strong>มหาวิทยาลัยแม่ฟ้าหลวง</strong> สิ่งที่ผมรู้ส่วนใหญ่มาจากการลงมือทำของที่ต้องรันได้จริง มากกว่ามาจากในห้องเรียน</p>
-        <p>ผลงานหลักของผมคือ <strong>Task Board</strong> เว็บแอปที่ให้หลายคนแก้เอกสารเดียวกันพร้อมกันและเห็นเคอร์เซอร์ของกันและกัน ผมทำเองทั้งหมด ตั้งแต่ API โครงสร้างฐานข้อมูล ระบบยืนยันตัวตน หน้าเว็บ ไปจนถึงชุดทดสอบ</p>
-        <p>งานนี้สอนผมว่าส่วนที่น่าสนใจของซอฟต์แวร์ไม่ใช่ตอนที่ทุกอย่างถูกต้อง แต่คือตอนที่คนสองคนพิมพ์ในย่อหน้าเดียวกัน ตอน token หมดอายุกลางคัน หรือตอนมีคนส่งข้อมูลที่ API ไม่เคยคาดคิดมาให้ สิ่งที่ผมให้ความสำคัญจึงเป็น <strong>ตรวจสอบข้อมูลที่รับเข้ามา ตั้งชื่อให้ทุกความผิดพลาด และทดสอบก่อนจะบอกว่างานเสร็จ</strong></p>
+        <p>Task Board สอนผมว่าส่วนที่น่าสนใจของซอฟต์แวร์ไม่ใช่ตอนที่ทุกอย่างถูกต้อง แต่คือตอนที่คนสองคนพิมพ์ในย่อหน้าเดียวกัน ตอน token หมดอายุกลางคัน หรือตอนมีคนส่งข้อมูลที่ API ไม่เคยคาดคิดมาให้</p>
+        <p>สิ่งที่ผมให้ความสำคัญจึงเป็น <strong>ตรวจสอบข้อมูลที่รับเข้ามา ตั้งชื่อให้ทุกความผิดพลาด และทดสอบก่อนจะบอกว่างานเสร็จ</strong></p>
         <p>ตอนนี้กำลังมองหางาน part-time หรือฟรีแลนซ์ที่ทำควบคู่กับการเรียนได้ ยินดีเริ่มจากงานเล็ก และรับผิดชอบสิ่งที่รับมาจนจบ</p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="skills" class="reveal">
-      <div class="sec-title"><span data-en>Skills</span><span data-th>ทักษะ</span></div>
-      <div class="skills">
-        <div class="skill">
-          <h3><span data-en>Backend &amp; API</span><span data-th>หลังบ้าน &amp; API</span></h3>
-          <p>NestJS, Spring Boot, Hono, REST API, WebSocket</p>
-        </div>
-        <div class="skill">
-          <h3><span data-en>Databases</span><span data-th>ฐานข้อมูล</span></h3>
-          <p>PostgreSQL, MySQL, Prisma, SQLite</p>
-        </div>
-        <div class="skill">
-          <h3><span data-en>Frontend</span><span data-th>หน้าเว็บ</span></h3>
-          <p>React, TypeScript, Vite, Tailwind CSS</p>
-        </div>
-        <div class="skill">
-          <h3><span data-en>Mobile</span><span data-th>โมบาย</span></h3>
-          <p>Flutter, Dart, Provider</p>
-        </div>
-        <div class="skill">
-          <h3><span data-en>Testing &amp; DevOps</span><span data-th>ทดสอบ &amp; DevOps</span></h3>
-          <p>Jest, Vitest, Playwright, JUnit, Docker, GitHub Actions</p>
-        </div>
-        <div class="skill">
-          <h3><span data-en>Security</span><span data-th>ความปลอดภัย</span></h3>
-          <p><span data-en>JWT, Google OAuth, bcrypt, role-based access control</span><span data-th>JWT, Google OAuth, bcrypt, คุมสิทธิ์ตามบทบาท</span></p>
-        </div>
+  <!-- ══════════════ skills ══════════════ -->
+  <section id="skills">
+    <div class="head">
+      <h2><span data-en>What I work with</span><span data-th>เครื่องมือที่ใช้</span></h2>
+    </div>
+    <div class="skills">
+      <div class="skill">
+        <h3><span data-en>Backend and API</span><span data-th>หลังบ้านและ API</span></h3>
+        <p>NestJS, Spring Boot, Hono, REST, WebSocket</p>
       </div>
-    </section>
-
-    <section id="work" class="reveal">
-      <div class="sec-title"><span data-en>Projects</span><span data-th>ผลงาน</span></div>
-
-      <div class="entry">
-        <div class="entry-head">
-          <div class="entry-title">
-            <a href="https://github.com/arumaosogi-sudo/task-board" target="_blank" rel="noopener">Task Board</a>
-            <a class="live" href="https://taskboard-aruma-web.onrender.com" target="_blank" rel="noopener">Live demo ↗</a>
-          </div>
-          <div class="entry-year">2026</div>
-        </div>
-        <div class="entry-meta">
-          <span data-en>Solo project — built end to end</span>
-          <span data-th>โปรเจกต์เดี่ยว — ทำเองทั้งระบบ</span>
-        </div>
-        <div class="entry-body">
-          <div data-en>
-            <p>A real-time collaborative report-writing app. Several people edit the same document at once and see each other's cursors, using Yjs CRDTs over WebSocket. Bilingual Thai/English, with export to Word.</p>
-            <ul>
-              <li>JWT access tokens with a rotating refresh token in an httpOnly cookie, plus Google sign-in</li>
-              <li>Owner / Editor / Viewer roles enforced <strong>on the server for every action</strong> — not by hiding buttons</li>
-              <li>Monorepo with 15+ database tables, Docker for dev, test and production, CI on every push</li>
-              <li>Tested at three levels: unit, integration, and end-to-end</li>
-            </ul>
-          </div>
-          <div data-th>
-            <p>เว็บแอปเขียนรายงานร่วมกันแบบเรียลไทม์ หลายคนแก้เอกสารเดียวกันพร้อมกันได้และเห็นเคอร์เซอร์ของกันและกัน ด้วย Yjs (CRDT) ผ่าน WebSocket รองรับสองภาษาไทย/อังกฤษ และส่งออกเป็นไฟล์ Word ได้</p>
-            <ul>
-              <li>ยืนยันตัวตนด้วย JWT คู่กับ refresh token แบบหมุนเวียนใน httpOnly cookie และรองรับล็อกอินผ่าน Google</li>
-              <li>คุมสิทธิ์ Owner / Editor / Viewer <strong>ที่ฝั่งเซิร์ฟเวอร์ทุกคำสั่ง</strong> ไม่ใช่แค่ซ่อนปุ่มที่หน้าเว็บ</li>
-              <li>วางเป็น monorepo ออกแบบฐานข้อมูล 15+ ตาราง ทำ Docker ครบทั้ง dev, test, production และ CI ทุกครั้งที่ push</li>
-              <li>ทดสอบ 3 ระดับ ทั้ง unit, integration และ end-to-end</li>
-            </ul>
-          </div>
-          <div class="stack">NestJS · Prisma · PostgreSQL · React · TypeScript · Yjs · Docker · Playwright</div>
-          <div class="demo-note">
-            <span data-en>Demo sign-in: <code>demo@task-board.app</code> / <code>demo-task-board-2026</code> — the API sleeps when idle, so the first load can take up to a minute.</span>
-            <span data-th>เข้าสู่ระบบตัวอย่าง: <code>demo@task-board.app</code> / <code>demo-task-board-2026</code> — เซิร์ฟเวอร์จะหลับเมื่อไม่มีคนใช้ ครั้งแรกอาจรอถึงหนึ่งนาที</span>
-          </div>
-        </div>
+      <div class="skill">
+        <h3><span data-en>Databases</span><span data-th>ฐานข้อมูล</span></h3>
+        <p>PostgreSQL, MySQL, Prisma, Drizzle, SQLite</p>
       </div>
-
-      <div class="entry">
-        <div class="entry-head">
-          <div class="entry-title">
-            <a href="https://github.com/arumaosogi-sudo/classroom-savings-bank" target="_blank" rel="noopener">Classroom Savings Bank</a>
-            <a class="live" href="https://kid-savings-bank.vercel.app" target="_blank" rel="noopener">Live demo &#8599;</a>
-          </div>
-          <div class="entry-year">2026</div>
-        </div>
-        <div class="entry-meta">
-          <span data-en>Solo project &mdash; web, Android and a LINE integration</span>
-          <span data-th>&#3650;&#3611;&#3619;&#3648;&#3592;&#3585;&#3605;&#3660;&#3648;&#3604;&#3637;&#3656;&#3618;&#3623; &mdash; &#3607;&#3633;&#3657;&#3591;&#3648;&#3623;&#3655;&#3610; Android &#3649;&#3621;&#3632;&#3648;&#3594;&#3639;&#3656;&#3629;&#3617;&#3605;&#3656;&#3629; LINE</span>
-        </div>
-        <div class="entry-body">
-          <div data-en>
-            <p>Thai primary schools run a classroom savings bank out of a paper passbook: the teacher collects a few baht each morning and writes it down, totals drift, and parents only learn the balance at the end of term. This replaces the book, and sends each parent a weekly balance card inside LINE &mdash; the app their family already has, so there is nothing to install.</p>
-            <ul>
-              <li>Every teacher connects their own LINE Official Account: the app validates the token, registers the webhook automatically, and can repair a misrouted one from the settings page</li>
-              <li>Channel keys are encrypted at rest with <strong>AES-256-GCM</strong>, and every webhook request is verified by HMAC signature</li>
-              <li>Built for audit: deposits pass a confirm step showing the balance before and after, mistakes can be undone, and older reversals are recorded as visible entries instead of deletions</li>
-              <li>11 PostgreSQL tables over 6 migrations, Excel export, and an Android build of the same app</li>
-            </ul>
-          </div>
-          <div data-th>
-            <p>&#3608;&#3609;&#3634;&#3588;&#3634;&#3619;&#3650;&#3619;&#3591;&#3648;&#3619;&#3637;&#3618;&#3609;&#3651;&#3609;&#3617;&#3633;&#3608;&#3618;&#3617;&#3611;&#3619;&#3632;&#3606;&#3617;&#3651;&#3594;&#3657;&#3626;&#3617;&#3640;&#3604;&#3610;&#3633;&#3597;&#3594;&#3637;&#3585;&#3619;&#3632;&#3604;&#3634;&#3625; &#3588;&#3619;&#3641;&#3648;&#3585;&#3655;&#3610;&#3648;&#3591;&#3636;&#3609;&#3607;&#3640;&#3585;&#3648;&#3594;&#3657;&#3634;&#3649;&#3621;&#3657;&#3623;&#3592;&#3604;&#3621;&#3591; &#3618;&#3629;&#3604;&#3648;&#3614;&#3637;&#3657;&#3618;&#3609;&#3610;&#3656;&#3629;&#3618; &#3649;&#3621;&#3632;&#3612;&#3641;&#3657;&#3611;&#3585;&#3588;&#3619;&#3629;&#3591;&#3648;&#3614;&#3636;&#3656;&#3591;&#3619;&#3641;&#3657;&#3618;&#3629;&#3604;&#3605;&#3629;&#3609;&#3611;&#3621;&#3634;&#3618;&#3648;&#3607;&#3629;&#3617; &#3649;&#3629;&#3611;&#3609;&#3637;&#3657;&#3649;&#3607;&#3609;&#3626;&#3617;&#3640;&#3604; &#3649;&#3621;&#3632;&#3626;&#3656;&#3591;&#3618;&#3629;&#3604;&#3648;&#3591;&#3636;&#3609;&#3619;&#3634;&#3618;&#3626;&#3633;&#3611;&#3604;&#3634;&#3627;&#3660;&#3606;&#3638;&#3591;&#3612;&#3641;&#3657;&#3611;&#3585;&#3588;&#3619;&#3629;&#3591;&#3607;&#3634;&#3591; LINE &#3607;&#3637;&#3656;&#3610;&#3657;&#3634;&#3609;&#3617;&#3637;&#3629;&#3618;&#3641;&#3656;&#3649;&#3621;&#3657;&#3623; &#3652;&#3617;&#3656;&#3605;&#3657;&#3629;&#3591;&#3621;&#3591;&#3649;&#3629;&#3611;&#3648;&#3614;&#3636;&#3656;&#3617;</p>
-            <ul>
-              <li>&#3588;&#3619;&#3641;&#3649;&#3605;&#3656;&#3621;&#3632;&#3588;&#3609;&#3612;&#3641;&#3585; LINE Official Account &#3586;&#3629;&#3591;&#3605;&#3633;&#3623;&#3648;&#3629;&#3591; &#3619;&#3632;&#3610;&#3610;&#3605;&#3619;&#3623;&#3592; token &#3605;&#3633;&#3657;&#3591; webhook &#3651;&#3627;&#3657;&#3629;&#3633;&#3605;&#3650;&#3609;&#3617;&#3633;&#3605;&#3636; &#3649;&#3621;&#3632;&#3595;&#3656;&#3629;&#3617;&#3651;&#3627;&#3657;&#3652;&#3604;&#3657;&#3592;&#3634;&#3585;&#3627;&#3609;&#3657;&#3634;&#3605;&#3633;&#3657;&#3591;&#3588;&#3656;&#3634;</li>
-              <li>&#3648;&#3586;&#3657;&#3634;&#3619;&#3627;&#3633;&#3626; key &#3586;&#3629;&#3591;&#3649;&#3605;&#3656;&#3621;&#3632;&#3619;&#3657;&#3634;&#3609;&#3604;&#3657;&#3623;&#3618; <strong>AES-256-GCM</strong> &#3649;&#3621;&#3632;&#3605;&#3619;&#3623;&#3592;&#3621;&#3634;&#3618;&#3648;&#3595;&#3655;&#3609; HMAC &#3607;&#3640;&#3585; webhook</li>
-              <li>&#3629;&#3629;&#3585;&#3649;&#3610;&#3610;&#3651;&#3627;&#3657;&#3605;&#3619;&#3623;&#3592;&#3626;&#3629;&#3610;&#3618;&#3657;&#3629;&#3609;&#3627;&#3621;&#3633;&#3591;&#3652;&#3604;&#3657; &#3607;&#3640;&#3585;&#3619;&#3634;&#3618;&#3585;&#3634;&#3619;&#3612;&#3656;&#3634;&#3609;&#3627;&#3609;&#3657;&#3634;&#3618;&#3639;&#3609;&#3618;&#3633;&#3609;&#3607;&#3637;&#3656;&#3649;&#3626;&#3604;&#3591;&#3618;&#3629;&#3604;&#3585;&#3656;&#3629;&#3609;-&#3627;&#3621;&#3633;&#3591; &#3618;&#3585;&#3648;&#3621;&#3636;&#3585;&#3652;&#3604;&#3657; &#3649;&#3621;&#3632;&#3585;&#3634;&#3619;&#3649;&#3585;&#3657;&#3619;&#3634;&#3618;&#3585;&#3634;&#3619;&#3648;&#3585;&#3656;&#3634;&#3606;&#3641;&#3585;&#3610;&#3633;&#3609;&#3607;&#3638;&#3585;&#3648;&#3611;&#3655;&#3609;&#3627;&#3621;&#3633;&#3585;&#3600;&#3634;&#3609;&#3649;&#3607;&#3609;&#3585;&#3634;&#3619;&#3621;&#3610;&#3607;&#3636;&#3657;&#3591;</li>
-              <li>&#3600;&#3634;&#3609;&#3586;&#3657;&#3629;&#3617;&#3641;&#3621; 11 &#3605;&#3634;&#3619;&#3634;&#3591; 6 migration &#3626;&#3656;&#3591;&#3629;&#3629;&#3585; Excel &#3652;&#3604;&#3657; &#3649;&#3621;&#3632;&#3617;&#3637;&#3649;&#3629;&#3611; Android &#3586;&#3629;&#3591;&#3605;&#3633;&#3623;&#3648;&#3604;&#3637;&#3618;&#3623;&#3585;&#3633;&#3609;</li>
-            </ul>
-          </div>
-          <div class="stack">Next.js 16 &middot; React 19 &middot; TypeScript &middot; PostgreSQL &middot; Drizzle ORM &middot; LINE Messaging API &middot; PWA &middot; Android TWA</div>
-        </div>
+      <div class="skill">
+        <h3><span data-en>Frontend</span><span data-th>หน้าเว็บ</span></h3>
+        <p>React, TypeScript, Vite, Tailwind CSS</p>
       </div>
-
-      <div class="entry">
-        <div class="entry-head">
-          <div class="entry-title">
-            <a href="https://github.com/arumaosogi-sudo/digital-muscle" target="_blank" rel="noopener">Digital Muscle</a>
-            <a class="live" href="https://digital-muscle.medicsync.workers.dev" target="_blank" rel="noopener">Live demo &#8599;</a>
-          </div>
-          <div class="entry-year">2026</div>
-        </div>
-        <div class="entry-meta">
-          <span data-en>Team of 2</span>
-          <span data-th>&#3607;&#3637;&#3617; 2 &#3588;&#3609;</span>
-          &mdash; <span class="tag"><span data-en>my role: the whole platform</span><span data-th>&#3627;&#3609;&#3657;&#3634;&#3607;&#3637;&#3656;&#3586;&#3629;&#3591;&#3612;&#3617;: &#3649;&#3614;&#3621;&#3605;&#3615;&#3629;&#3619;&#3660;&#3617;&#3607;&#3633;&#3657;&#3591;&#3627;&#3617;&#3604;</span></span>
-        </div>
-        <div class="entry-body">
-          <div data-en>
-            <p>A course tool built from a lecturer's muscle-physiology textbook. Students join a section by scanning its QR code; instructors build the exams and read the results. I built the platform &mdash; authentication, the API, the database, the instructor dashboard and the 3D module; my teammate built the games.</p>
-            <ul>
-              <li>A REST API of about 54 endpoints across 12 route modules on Cloudflare Workers, over 9 D1 migrations covering attempt integrity, anonymised identities and section capacity</li>
-              <li>Two ways in: Google sign-in restricted to the university domain for students, and a hashed password login for instructors that locks out after 5 failed attempts in 15 minutes</li>
-              <li>An instructor dashboard with QR section management, a Google-Forms-style exam builder, pretest/posttest grading and Excel export</li>
-              <li>A 3D explorer built with three.js: three muscle types, meshopt-compressed models, step-through animations and clickable labelled parts</li>
-              <li>Every route written down in a 507-line shared API contract, so the client and the server could be built against the same document</li>
-            </ul>
-          </div>
-          <div data-th>
-            <p>&#3626;&#3639;&#3656;&#3629;&#3585;&#3634;&#3619;&#3626;&#3629;&#3609;&#3607;&#3637;&#3656;&#3626;&#3619;&#3657;&#3634;&#3591;&#3592;&#3634;&#3585;&#3627;&#3609;&#3633;&#3591;&#3626;&#3639;&#3629;&#3648;&#3619;&#3637;&#3618;&#3609;&#3648;&#3619;&#3639;&#3656;&#3629;&#3591;&#3619;&#3632;&#3610;&#3610;&#3585;&#3621;&#3657;&#3634;&#3617;&#3648;&#3609;&#3639;&#3657;&#3629;&#3586;&#3629;&#3591;&#3629;&#3634;&#3592;&#3634;&#3619;&#3618;&#3660; &#3609;&#3633;&#3585;&#3624;&#3638;&#3585;&#3625;&#3634;&#3626;&#3649;&#3585;&#3609; QR &#3648;&#3614;&#3639;&#3656;&#3629;&#3648;&#3586;&#3657;&#3634; Section &#3629;&#3634;&#3592;&#3634;&#3619;&#3618;&#3660;&#3626;&#3619;&#3657;&#3634;&#3591;&#3586;&#3657;&#3629;&#3626;&#3629;&#3610;&#3649;&#3621;&#3632;&#3604;&#3641;&#3612;&#3621;&#3652;&#3604;&#3657; &#3612;&#3617;&#3619;&#3633;&#3610;&#3612;&#3636;&#3604;&#3594;&#3629;&#3610;&#3626;&#3656;&#3623;&#3609;&#3649;&#3614;&#3621;&#3605;&#3615;&#3629;&#3619;&#3660;&#3617;&#3607;&#3633;&#3657;&#3591;&#3627;&#3617;&#3604; &#3607;&#3633;&#3657;&#3591;&#3619;&#3632;&#3610;&#3610;&#3621;&#3655;&#3629;&#3585;&#3629;&#3636;&#3609; API &#3600;&#3634;&#3609;&#3586;&#3657;&#3629;&#3617;&#3641;&#3621; dashboard &#3629;&#3634;&#3592;&#3634;&#3619;&#3618;&#3660; &#3649;&#3621;&#3632;&#3626;&#3656;&#3623;&#3609; 3D &#3626;&#3656;&#3623;&#3609;&#3648;&#3614;&#3639;&#3656;&#3629;&#3609;&#3619;&#3656;&#3623;&#3617;&#3607;&#3637;&#3617;&#3607;&#3635;&#3650;&#3617;&#3604;&#3641;&#3621;&#3648;&#3585;&#3617;</p>
-            <ul>
-              <li>REST API &#3611;&#3619;&#3632;&#3617;&#3634;&#3603; 54 endpoint &#3651;&#3609; 12 route module &#3610;&#3609; Cloudflare Workers &#3614;&#3619;&#3657;&#3629;&#3617; 9 migration &#3610;&#3609; D1 &#3588;&#3619;&#3629;&#3610;&#3588;&#3621;&#3640;&#3617;&#3588;&#3623;&#3634;&#3617;&#3606;&#3641;&#3585;&#3605;&#3657;&#3629;&#3591;&#3586;&#3629;&#3591;&#3585;&#3634;&#3619;&#3626;&#3629;&#3610; &#3585;&#3634;&#3619;&#3611;&#3585;&#3611;&#3636;&#3604;&#3605;&#3633;&#3623;&#3605;&#3609; &#3649;&#3621;&#3632;&#3588;&#3623;&#3634;&#3617;&#3592;&#3640;&#3586;&#3629;&#3591; Section</li>
-              <li>&#3648;&#3586;&#3657;&#3634;&#3626;&#3641;&#3656;&#3619;&#3632;&#3610;&#3610;&#3626;&#3629;&#3591;&#3607;&#3634;&#3591;: &#3609;&#3633;&#3585;&#3624;&#3638;&#3585;&#3625;&#3634;&#3651;&#3594;&#3657; Google &#3592;&#3635;&#3585;&#3633;&#3604;&#3648;&#3593;&#3614;&#3634;&#3632;&#3650;&#3604;&#3648;&#3617;&#3609;&#3617;&#3627;&#3634;&#3623;&#3636;&#3607;&#3618;&#3634;&#3621;&#3633;&#3618; &#3629;&#3634;&#3592;&#3634;&#3619;&#3618;&#3660;&#3651;&#3594;&#3657;&#3619;&#3627;&#3633;&#3626;&#3612;&#3656;&#3634;&#3609;&#3607;&#3637;&#3656; hash &#3652;&#3623;&#3657; &#3649;&#3621;&#3632;&#3621;&#3655;&#3629;&#3585;&#3648;&#3617;&#3639;&#3656;&#3629;&#3612;&#3636;&#3604;&#3648;&#3585;&#3636;&#3609; 5 &#3588;&#3619;&#3633;&#3657;&#3591;&#3651;&#3609; 15 &#3609;&#3634;&#3607;&#3637;</li>
-              <li>Dashboard &#3629;&#3634;&#3592;&#3634;&#3619;&#3618;&#3660; &#3592;&#3633;&#3604;&#3585;&#3634;&#3619; Section &#3649;&#3621;&#3632; QR &#3626;&#3619;&#3657;&#3634;&#3591;&#3586;&#3657;&#3629;&#3626;&#3629;&#3610;&#3649;&#3610;&#3610; Google Form &#3605;&#3619;&#3623;&#3592;&#3651;&#3627;&#3657;&#3588;&#3632;&#3649;&#3609;&#3609; pretest/posttest &#3649;&#3621;&#3632;&#3626;&#3656;&#3591;&#3629;&#3629;&#3585; Excel</li>
-              <li>&#3650;&#3617;&#3604;&#3641;&#3621; 3D &#3604;&#3657;&#3623;&#3618; three.js &#3585;&#3621;&#3657;&#3634;&#3617;&#3648;&#3609;&#3639;&#3657;&#3629; 3 &#3594;&#3609;&#3636;&#3604; &#3610;&#3637;&#3610;&#3604;&#3657;&#3623;&#3618; meshopt &#3617;&#3637;&#3649;&#3629;&#3609;&#3636;&#3648;&#3617;&#3594;&#3633;&#3609;&#3652;&#3621;&#3656;&#3586;&#3633;&#3657;&#3609; &#3649;&#3621;&#3632;&#3588;&#3621;&#3636;&#3585;&#3604;&#3641;&#3594;&#3639;&#3656;&#3629;&#3594;&#3636;&#3657;&#3609;&#3626;&#3656;&#3623;&#3609;&#3652;&#3604;&#3657;</li>
-              <li>&#3648;&#3586;&#3637;&#3618;&#3609;&#3607;&#3640;&#3585; endpoint &#3652;&#3623;&#3657;&#3651;&#3609; API contract &#3623; 507 &#3610;&#3619;&#3619;&#3607;&#3633;&#3604; &#3651;&#3627;&#3657;&#3615;&#3619;&#3629;&#3609;&#3605;&#3660;&#3649;&#3621;&#3632;&#3627;&#3621;&#3633;&#3591;&#3618;&#3638;&#3604;&#3648;&#3629;&#3585;&#3626;&#3634;&#3619;&#3593;&#3610;&#3633;&#3610;&#3648;&#3604;&#3637;&#3618;&#3623;&#3585;&#3633;&#3609;</li>
-            </ul>
-          </div>
-          <div class="stack">Cloudflare Workers &middot; Hono &middot; Cloudflare D1 &middot; React &middot; TypeScript &middot; three.js &middot; Vitest</div>
-        </div>
+      <div class="skill">
+        <h3><span data-en>Mobile</span><span data-th>โมบาย</span></h3>
+        <p>Flutter, Dart, Provider</p>
       </div>
-
-      <div class="entry">
-        <div class="entry-head">
-          <div class="entry-title">
-            <a href="https://github.com/nitiphum01/SAGA-test" target="_blank" rel="noopener">SAGA</a>
-          </div>
-          <div class="entry-year">2026</div>
-        </div>
-        <div class="entry-meta">
-          <span data-en>Solo project — student marketplace app</span>
-          <span data-th>โปรเจกต์เดี่ยว — แอปตลาดซื้อขายของนักศึกษา</span>
-        </div>
-        <div class="entry-body">
-          <div data-en>
-            <ul>
-              <li>Ten core screens — listings, chat, profile and settings</li>
-              <li>Organised feature by feature, with the service layer kept separate from the UI so it can move to a real API without touching a single screen</li>
-            </ul>
-          </div>
-          <div data-th>
-            <ul>
-              <li>10 หน้าจอหลัก ตั้งแต่ลงขายสินค้า ห้องแชท โปรไฟล์ ไปจนถึงหน้าตั้งค่า</li>
-              <li>วางโครงสร้างโค้ดแยกตามฟีเจอร์ และแยกชั้น service ออกจาก UI เพื่อสลับไปต่อ API จริงได้โดยไม่ต้องแก้หน้าจอสักหน้า</li>
-            </ul>
-          </div>
-          <div class="stack">Flutter · Dart · Provider · go_router</div>
-        </div>
+      <div class="skill">
+        <h3><span data-en>Testing and DevOps</span><span data-th>ทดสอบและ DevOps</span></h3>
+        <p>Jest, Vitest, Playwright, JUnit, Docker, GitHub Actions</p>
       </div>
-    </section>
-
-    <section id="education" class="reveal">
-      <div class="sec-title"><span data-en>Education</span><span data-th>การศึกษา</span></div>
-      <div class="entry">
-        <div class="entry-head">
-          <div class="entry-title">
-            <span data-en>Mae Fah Luang University</span><span data-th>มหาวิทยาลัยแม่ฟ้าหลวง</span>
-          </div>
-          <div class="entry-year">2024 — <span data-en>present</span><span data-th>ปัจจุบัน</span></div>
-        </div>
-        <div class="entry-meta">
-          <span data-en>B.Eng. Software Engineering · School of Applied Digital Technology · 3rd year</span>
-          <span data-th>วศ.บ. วิศวกรรมซอฟต์แวร์ · สำนักวิชาเทคโนโลยีดิจิทัลประยุกต์ · ชั้นปีที่ 3</span>
-        </div>
-        <div class="entry-body">
-          <p>
-            <span data-en><strong>Relevant coursework:</strong> </span>
-            <span data-th><strong>วิชาที่เกี่ยวข้อง:</strong> </span>
-            Data Structures and Algorithms, Database Systems, Web Application Development,
-            Mobile Application Development, Software Testing, Software Process and Quality Assurance
-          </p>
-        </div>
+      <div class="skill">
+        <h3><span data-en>Security</span><span data-th>ความปลอดภัย</span></h3>
+        <p><span data-en>JWT, Google OAuth, bcrypt, role-based access control</span><span data-th>JWT, Google OAuth, bcrypt, คุมสิทธิ์ตามบทบาท</span></p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="contact" class="reveal">
-      <div class="sec-title"><span data-en>Contact</span><span data-th>ติดต่อ</span></div>
-      <p style="max-width:34em;font-size:17px">
-        <span data-en>I'm looking for part-time and freelance work while I finish my degree — API work, database work, front end, testing, or just finishing something that stalled.</span>
-        <span data-th>ผมกำลังมองหางาน part-time และงานฟรีแลนซ์ระหว่างเรียนอยู่ครับ ไม่ว่าจะเป็นงาน API งานฐานข้อมูล งานหน้าเว็บ งานทดสอบ หรือแค่มาทำงานที่ค้างอยู่ให้จบ</span>
+  <!-- ══════════════ education ══════════════ -->
+  <section id="education">
+    <div class="head">
+      <h2><span data-en>Education</span><span data-th>การศึกษา</span></h2>
+    </div>
+    <div class="edu-top">
+      <h3><span data-en>Mae Fah Luang University</span><span data-th>มหาวิทยาลัยแม่ฟ้าหลวง</span></h3>
+      <div class="yr">2024 — <span data-en>present</span><span data-th>ปัจจุบัน</span></div>
+    </div>
+    <div class="edu-sub">
+      <span data-en>B.Eng. Software Engineering, School of Applied Digital Technology — third year</span>
+      <span data-th>วศ.บ. วิศวกรรมซอฟต์แวร์ สำนักวิชาเทคโนโลยีดิจิทัลประยุกต์ — ชั้นปีที่ 3</span>
+    </div>
+    <div class="prose">
+      <p>
+        <span data-en><strong>Coursework that shows up in the work above:</strong> data structures and algorithms, database systems, web application development, mobile application development, software testing, software process and quality assurance.</span>
+        <span data-th><strong>วิชาที่ได้ใช้จริงในผลงานข้างบน:</strong> โครงสร้างข้อมูลและอัลกอริทึม ระบบฐานข้อมูล การพัฒนาเว็บแอปพลิเคชัน การพัฒนาแอปมือถือ การทดสอบซอฟต์แวร์ และกระบวนการและการประกันคุณภาพซอฟต์แวร์</span>
       </p>
-      <div class="contact-list">
-        <div><span class="k"><span data-en>Email</span><span data-th>อีเมล</span></span><a href="mailto:aruma.osogi@gmail.com">aruma.osogi@gmail.com</a></div>
-        <div><span class="k"><span data-en>Phone</span><span data-th>โทรศัพท์</span></span><a href="tel:+66661097439">066-109-7439</a></div>
-        <div><span class="k">GitHub</span><a href="https://github.com/arumaosogi-sudo" target="_blank" rel="noopener">github.com/arumaosogi-sudo</a></div>
-      </div>
-    </section>
+    </div>
+  </section>
 
-    <footer>
+  <!-- ══════════════ contact ══════════════ -->
+  <section id="contact">
+    <div class="head">
+      <h2><span data-en>Contact</span><span data-th>ติดต่อ</span></h2>
+    </div>
+    <p class="closing">
+      <span data-en>Got something half-built? <span class="em">I'll finish it.</span></span>
+      <span data-th>มีงานที่ค้างอยู่ไหมครับ <span class="em">ผมทำให้จบได้</span></span>
+    </p>
+    <p class="prose" style="margin-top:18px">
+      <span data-en>Part-time and freelance, alongside my degree — API work, database work, front end, or testing.</span>
+      <span data-th>รับงาน part-time และฟรีแลนซ์ควบคู่กับการเรียน ทั้งงาน API งานฐานข้อมูล งานหน้าเว็บ หรืองานทดสอบ</span>
+    </p>
+    <div class="reach">
+      <div>
+        <span class="k"><span data-en>Email</span><span data-th>อีเมล</span></span>
+        <a href="mailto:aruma.osogi@gmail.com">aruma.osogi@gmail.com</a>
+      </div>
+      <div>
+        <span class="k"><span data-en>Phone</span><span data-th>โทรศัพท์</span></span>
+        <a href="tel:+66661097439">066-109-7439</a>
+      </div>
+      <div>
+        <span class="k">GitHub</span>
+        <a href="https://github.com/arumaosogi-sudo" target="_blank" rel="noopener">arumaosogi-sudo</a>
+      </div>
+      <div>
+        <span class="k">CV</span>
+        <a href="Nitiphum-Hongson-CV-EN.pdf" download><span data-en>English</span><span data-th>อังกฤษ</span></a>
+        <a href="Nitiphum-Hongson-CV-TH.pdf" download><span data-en>Thai</span><span data-th>ไทย</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>
       <span data-en>Built by Nitiphum Hongson — hand-coded, no framework.</span>
       <span data-th>สร้างโดย นิติภูมิ ห่วงศร — เขียนเองล้วน ไม่ใช้เฟรมเวิร์ก</span>
-    </footer>
-  </main>
+    </span>
+    <span><span data-en>Chiang Rai, Thailand</span><span data-th>เชียงราย ประเทศไทย</span></span>
+  </footer>
 
-</div>
 </div>
 
 <script>
+  // Opt the hero into its entrance animation only once script is running.
+  document.documentElement.classList.add('js');
+
   function setLang(l){
     document.documentElement.lang = l;
     document.getElementById('btn-en').classList.toggle('on', l === 'en');
@@ -435,11 +526,6 @@
   }
   try { const s = localStorage.getItem('lang'); if (s) setLang(s); } catch (e) {}
 
-  const io = new IntersectionObserver(es => {
-    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.06 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
   const links = [...document.querySelectorAll('#nav a')];
   const spy = new IntersectionObserver(es => {
     es.forEach(e => {
@@ -447,8 +533,8 @@
         links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
       }
     });
-  }, { rootMargin: '-45% 0px -50% 0px' });
-  document.querySelectorAll('main section').forEach(s => spy.observe(s));
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  document.querySelectorAll('section').forEach(s => spy.observe(s));
 </script>
 </body>
 </html>
