@@ -85,14 +85,22 @@
 
   /* The punchline. His own sentence ends in one word set as an image, running
      past the right edge the way both references do. */
+  /* The word sits beside the photo rather than above it, so it is sized to the
+     text column instead of the viewport. PORTFOLIO is the label that tells a
+     first-time visitor what the page is. */
+  .hero-top{display:grid;grid-template-columns:minmax(0,1fr) auto;
+            gap:clamp(18px,3.5vw,44px);align-items:end;margin-bottom:26px}
+  .hero-text{min-width:0;container-type:inline-size}
+  /* In Archivo Black the word measures 6.075x its own font-size, so sizing it
+     against the text column rather than the viewport keeps the last O clear of
+     the photo at every width. The vw value is the fallback. */
   .punch{font-family:var(--display);color:var(--ink);
-         font-size:clamp(76px,19vw,250px);line-height:.82;letter-spacing:-.035em;
-         margin:6px 0 0;white-space:nowrap}
-  .punch .dot{color:var(--blue)}
-
-  .hero-lower{display:grid;grid-template-columns:minmax(0,1fr) auto;
-              gap:clamp(20px,4vw,52px);align-items:end;margin-top:28px}
-  .lede{max-width:46ch;font-size:16.5px;color:var(--ink-soft)}
+         font-size:clamp(34px,10.4vw,128px);line-height:.84;letter-spacing:-.04em;
+         margin:10px 0 0;white-space:nowrap}
+  @supports (font-size:1cqw){
+    .punch{font-size:clamp(34px,16cqw,148px)}
+  }
+  .lede{max-width:58ch;font-size:16.5px;color:var(--ink-soft)}
   .cta{display:flex;flex-wrap:wrap;gap:11px;margin-top:24px}
   .btn{display:inline-flex;align-items:center;border-radius:999px;padding:13px 24px;
        font-size:15px;font-weight:600;border:2px solid var(--ink)}
@@ -102,7 +110,7 @@
   .btn-ghost:hover{background:var(--paper-lift)}
 
   /* Photo unchanged — only the frame answers the heavier page. */
-  .portrait{width:clamp(180px,22vw,262px);flex:none}
+  .portrait{width:clamp(150px,19vw,236px);flex:none;align-self:end}
   .portrait img{border:3px solid var(--ink);border-radius:4px;
                 box-shadow:10px 10px 0 var(--blue)}
 
@@ -184,10 +192,9 @@
   html[lang="th"] body{font-family:'IBM Plex Sans Thai','Archivo',sans-serif}
   /* Thai has no Archivo Black equivalent and sets much wider, so the punchline
      gets its own face, size and wrapping rather than overflowing the viewport. */
-  html[lang="th"] .punch,html[lang="th"] .head h2,
+  html[lang="th"] .head h2,
   html[lang="th"] .proj-name,html[lang="th"] .closing{
     font-family:'IBM Plex Sans Thai',sans-serif;font-weight:600;letter-spacing:-.01em}
-  html[lang="th"] .punch{font-size:clamp(42px,9.5vw,104px);line-height:1.08;white-space:normal}
   html[lang="th"] .closing{font-size:clamp(28px,4.4vw,52px);line-height:1.22;max-width:18ch}
   html[lang="th"] .head h2{font-size:clamp(26px,3.6vw,42px);line-height:1.2}
   html[lang="th"] .proj-name{font-size:clamp(23px,2.8vw,34px);line-height:1.25}
@@ -201,8 +208,8 @@
   }
 
   @media (max-width:880px){
-    .hero-lower{grid-template-columns:1fr;align-items:start}
-    .portrait{width:200px;order:2;margin-top:4px}
+    .hero-top{grid-template-columns:1fr;align-items:start;gap:18px}
+    .portrait{width:190px;order:2}
     .proj-body{grid-template-columns:1fr;gap:14px}
     .bar{flex-wrap:wrap;gap:10px}
   }
@@ -236,43 +243,39 @@
 
   <!-- ══════════════ hero ══════════════ -->
   <div class="hero">
-    <div class="badge rise d1">
-      <span class="dot" aria-hidden="true"></span>
-      <span data-en>Open to part-time and freelance work</span>
-      <span data-th>รับงาน part-time และฟรีแลนซ์</span>
-    </div>
+    <div class="hero-top">
+      <div class="hero-text">
+        <div class="badge rise d1">
+          <span class="dot" aria-hidden="true"></span>
+          <span data-en>Open to part-time and freelance work</span>
+          <span data-th>รับงาน part-time และฟรีแลนซ์</span>
+        </div>
 
-    <h1>
-      <span class="setup rise d2" style="display:block">
-        <span data-en>I build backends, APIs, and the tests that keep them</span>
-        <span data-th>ผมทำหลังบ้าน ทำ API และเขียนเทสต์</span>
-      </span>
-      <span class="punch rise d3" style="display:block">
-        <span data-en>HONEST<span class="dot">.</span></span>
-        <span data-th>ที่คอยจับผิดมันเอง<span class="dot">.</span></span>
-      </span>
-    </h1>
-
-    <div class="hero-lower">
-      <div>
-        <p class="lede rise d4">
-          <span data-en>Hi, I’m Nitiphum — a third-year software engineering student at Mae Fah Luang University. Two of the projects below are running right now, and you can open them.</span>
-          <span data-th>สวัสดีครับ ผมนิติภูมิ นักศึกษาวิศวกรรมซอฟต์แวร์ชั้นปีที่ 3 มหาวิทยาลัยแม่ฟ้าหลวง สองโปรเจกต์ด้านล่างรันอยู่จริงตอนนี้ และกดเข้าไปดูได้เลย</span>
+        <p class="setup rise d2">
+          <span data-en>Nitiphum Hongson — web developer, and a software engineering student at Mae Fah Luang University</span>
+          <span data-th>นิติภูมิ ห่วงศร — web developer และนักศึกษาวิศวกรรมซอฟต์แวร์ มหาวิทยาลัยแม่ฟ้าหลวง</span>
         </p>
 
-        <div class="cta rise d4">
-          <a class="btn btn-dark" href="#work">
-            <span data-en>See the work</span><span data-th>ดูผลงาน</span>
-          </a>
-          <a class="btn btn-ghost" href="Nitiphum-Hongson-CV-EN.pdf" download>
-            <span data-en>Download CV</span><span data-th>ดาวน์โหลด CV</span>
-          </a>
-        </div>
+        <h1 class="punch rise d3">PORTFOLIO</h1>
       </div>
 
       <div class="portrait rise d5">
         <img src="profile.jpg" alt="Nitiphum Hongson" width="720" height="720">
       </div>
+    </div>
+
+    <p class="lede rise d4">
+      <span data-en>I build web apps that stand on their own — the REST API, the database, the sign-in, the front end and the tests — then put them online. Mobile too, in Flutter. Three of the four below are running right now.</span>
+      <span data-th>ผมทำเว็บแอปที่จบในตัว ตั้งแต่ REST API ฐานข้อมูล ระบบล็อกอิน หน้าเว็บ ไปจนถึงชุดทดสอบ แล้วเอาขึ้นใช้งานจริง รวมถึงแอปมือถือด้วย Flutter</span>
+    </p>
+
+    <div class="cta rise d4">
+      <a class="btn btn-dark" href="#work">
+        <span data-en>See the work</span><span data-th>ดูผลงาน</span>
+      </a>
+      <a class="btn btn-ghost" href="Nitiphum-Hongson-CV-EN.pdf" download>
+        <span data-en>Download CV</span><span data-th>ดาวน์โหลด CV</span>
+      </a>
     </div>
   </div>
 
@@ -282,6 +285,42 @@
       <h2><span data-en>Selected work</span><span data-th>ผลงานที่เลือกมา</span></h2>
       <div class="count"><span data-en>Two you can open, one in screenshots</span><span data-th>เปิดดูได้จริง 2 อีก 1 เป็นภาพหน้าจอ</span></div>
     </div>
+
+    <!-- Digital Muscle -->
+    <article class="proj">
+      <div class="proj-top">
+        <div class="proj-name"><a href="https://github.com/arumaosogi-sudo/digital-muscle" target="_blank" rel="noopener">Digital Muscle</a></div>
+        <div class="proj-kind"><span data-en>Team of two. My scope was the platform</span><span data-th>ทีมสองคน ผมรับผิดชอบส่วนแพลตฟอร์ม</span></div>
+      </div>
+      <div class="proj-body">
+        <div>
+          <p data-en>A course tool built from a lecturer's muscle-physiology textbook. Students join a section by scanning its QR code; instructors build the exams and read the results. I built the authentication, the API, the database, the instructor dashboard and the 3D module. My teammate built the games.</p>
+          <p data-th>สื่อการสอนที่สร้างจากหนังสือเรียนเรื่องระบบกล้ามเนื้อของอาจารย์ นักศึกษาสแกน QR เพื่อเข้า Section อาจารย์สร้างข้อสอบและดูผลได้ ผมทำระบบล็อกอิน API ฐานข้อมูล แดชบอร์ดอาจารย์ และส่วน 3D ส่วนเพื่อนร่วมทีมทำเกม</p>
+          <div class="tech">
+            <span>Cloudflare Workers</span><span>Hono</span><span>D1</span>
+            <span>React</span><span>TypeScript</span><span>three.js</span>
+          </div>
+        </div>
+        <ul class="facts">
+          <li data-en>About <strong>54 endpoints</strong> across 12 route modules, over 9 database migrations</li>
+          <li data-th>ราว <strong>54 endpoint</strong> ใน 12 route module บน 9 migration</li>
+          <li data-en>Google sign-in <strong>restricted to the university domain</strong>; instructor logins lock after 5 failed tries</li>
+          <li data-th>ล็อกอิน Google <strong>จำกัดเฉพาะโดเมนมหาวิทยาลัย</strong> บัญชีอาจารย์ล็อกเมื่อผิด 5 ครั้ง</li>
+          <li data-en>A <strong>3D muscle explorer</strong> in three.js with clickable labelled parts</li>
+          <li data-th><strong>โมดูลสำรวจกล้ามเนื้อ 3 มิติ</strong> ด้วย three.js คลิกดูชื่อแต่ละชิ้นส่วนได้</li>
+        </ul>
+      </div>
+      <div class="shots">
+        <figure><a href="shots/dm-3d-explore.jpg" target="_blank" rel="noopener"><img src="shots/dm-3d-explore.jpg" alt="The 3D explorer showing the biceps brachii with numbered, clickable parts" width="800" height="500" loading="lazy"></a><figcaption><span data-en>3D explorer, biceps brachii</span><span data-th>โมดูล 3 มิติ — biceps brachii</span></figcaption></figure>
+        <figure><a href="shots/dm-admin-classes.jpg" target="_blank" rel="noopener"><img src="shots/dm-admin-classes.jpg" alt="The instructor dashboard listing a section with its generated join QR code" width="800" height="500" loading="lazy"></a><figcaption><span data-en>Instructor dashboard, QR per section</span><span data-th>หน้าอาจารย์ — QR ราย Section</span></figcaption></figure>
+        <figure><a href="shots/dm-student-home.jpg" target="_blank" rel="noopener"><img src="shots/dm-student-home.jpg" alt="The student home screen with pretest, lessons, games, 3D explore and posttest" width="800" height="500" loading="lazy"></a><figcaption><span data-en>Student home</span><span data-th>หน้าแรกของนักศึกษา</span></figcaption></figure>
+        <figure><a href="shots/dm-signin.jpg" target="_blank" rel="noopener"><img src="shots/dm-signin.jpg" alt="The sign-in screen, restricted to university Google accounts" width="800" height="500" loading="lazy"></a><figcaption><span data-en>Sign-in, university accounts only</span><span data-th>หน้าเข้าสู่ระบบ</span></figcaption></figure>
+      </div>
+      <p class="note">
+        <span data-en>No public demo: the deployment holds real student accounts and exam results, so these are screens from the app running locally on seeded data.</span>
+        <span data-th>ไม่เปิด demo สาธารณะ เพราะระบบจริงมีบัญชีนักศึกษาและผลสอบจริง ภาพเหล่านี้จึงมาจากการรันแอปในเครื่องด้วยข้อมูลตัวอย่าง</span>
+      </p>
+    </article>
 
     <!-- Task Board -->
     <article class="proj">
@@ -346,42 +385,6 @@
       <p class="note">
         <span data-en>The demo runs on its own database with invented pupils, and never sends a real LINE message. Sign in with <code>demo@savingsbank.app</code> / <code>demo-savings-2026</code>; the free server sleeps when idle, so the first load can take about a minute.</span>
         <span data-th>demo ใช้ฐานข้อมูลแยกของตัวเอง นักเรียนเป็นชื่อสมมุติ และไม่ส่งข้อความออก LINE จริงสักข้อความ เข้าด้วย <code>demo@savingsbank.app</code> / <code>demo-savings-2026</code> เซิร์ฟเวอร์ฟรีจะหลับเมื่อไม่มีคนใช้ ครั้งแรกจึงอาจรอราวหนึ่งนาที</span>
-      </p>
-    </article>
-
-    <!-- Digital Muscle -->
-    <article class="proj">
-      <div class="proj-top">
-        <div class="proj-name"><a href="https://github.com/arumaosogi-sudo/digital-muscle" target="_blank" rel="noopener">Digital Muscle</a></div>
-        <div class="proj-kind"><span data-en>Team of two. My scope was the platform</span><span data-th>ทีมสองคน ผมรับผิดชอบส่วนแพลตฟอร์ม</span></div>
-      </div>
-      <div class="proj-body">
-        <div>
-          <p data-en>A course tool built from a lecturer's muscle-physiology textbook. Students join a section by scanning its QR code; instructors build the exams and read the results. I built the authentication, the API, the database, the instructor dashboard and the 3D module. My teammate built the games.</p>
-          <p data-th>สื่อการสอนที่สร้างจากหนังสือเรียนเรื่องระบบกล้ามเนื้อของอาจารย์ นักศึกษาสแกน QR เพื่อเข้า Section อาจารย์สร้างข้อสอบและดูผลได้ ผมทำระบบล็อกอิน API ฐานข้อมูล แดชบอร์ดอาจารย์ และส่วน 3D ส่วนเพื่อนร่วมทีมทำเกม</p>
-          <div class="tech">
-            <span>Cloudflare Workers</span><span>Hono</span><span>D1</span>
-            <span>React</span><span>TypeScript</span><span>three.js</span>
-          </div>
-        </div>
-        <ul class="facts">
-          <li data-en>About <strong>54 endpoints</strong> across 12 route modules, over 9 database migrations</li>
-          <li data-th>ราว <strong>54 endpoint</strong> ใน 12 route module บน 9 migration</li>
-          <li data-en>Google sign-in <strong>restricted to the university domain</strong>; instructor logins lock after 5 failed tries</li>
-          <li data-th>ล็อกอิน Google <strong>จำกัดเฉพาะโดเมนมหาวิทยาลัย</strong> บัญชีอาจารย์ล็อกเมื่อผิด 5 ครั้ง</li>
-          <li data-en>A <strong>3D muscle explorer</strong> in three.js with clickable labelled parts</li>
-          <li data-th><strong>โมดูลสำรวจกล้ามเนื้อ 3 มิติ</strong> ด้วย three.js คลิกดูชื่อแต่ละชิ้นส่วนได้</li>
-        </ul>
-      </div>
-      <div class="shots">
-        <figure><a href="shots/dm-3d-explore.jpg" target="_blank" rel="noopener"><img src="shots/dm-3d-explore.jpg" alt="The 3D explorer showing the biceps brachii with numbered, clickable parts" width="800" height="500" loading="lazy"></a><figcaption><span data-en>3D explorer, biceps brachii</span><span data-th>โมดูล 3 มิติ — biceps brachii</span></figcaption></figure>
-        <figure><a href="shots/dm-admin-classes.jpg" target="_blank" rel="noopener"><img src="shots/dm-admin-classes.jpg" alt="The instructor dashboard listing a section with its generated join QR code" width="800" height="500" loading="lazy"></a><figcaption><span data-en>Instructor dashboard, QR per section</span><span data-th>หน้าอาจารย์ — QR ราย Section</span></figcaption></figure>
-        <figure><a href="shots/dm-student-home.jpg" target="_blank" rel="noopener"><img src="shots/dm-student-home.jpg" alt="The student home screen with pretest, lessons, games, 3D explore and posttest" width="800" height="500" loading="lazy"></a><figcaption><span data-en>Student home</span><span data-th>หน้าแรกของนักศึกษา</span></figcaption></figure>
-        <figure><a href="shots/dm-signin.jpg" target="_blank" rel="noopener"><img src="shots/dm-signin.jpg" alt="The sign-in screen, restricted to university Google accounts" width="800" height="500" loading="lazy"></a><figcaption><span data-en>Sign-in, university accounts only</span><span data-th>หน้าเข้าสู่ระบบ</span></figcaption></figure>
-      </div>
-      <p class="note">
-        <span data-en>No public demo: the deployment holds real student accounts and exam results, so these are screens from the app running locally on seeded data.</span>
-        <span data-th>ไม่เปิด demo สาธารณะ เพราะระบบจริงมีบัญชีนักศึกษาและผลสอบจริง ภาพเหล่านี้จึงมาจากการรันแอปในเครื่องด้วยข้อมูลตัวอย่าง</span>
       </p>
     </article>
 
@@ -493,12 +496,12 @@
       <h2><span data-en>Contact</span><span data-th>ติดต่อ</span></h2>
     </div>
     <p class="closing">
-      <span data-en>Got something half-built? <span class="hit">I'll finish it.</span></span>
-      <span data-th>มีงานที่ค้างอยู่ไหมครับ <span class="hit">ผมทำให้จบได้</span></span>
+      <span data-en>Available for <span class="hit">freelance and part-time work</span></span>
+      <span data-th>เปิดรับ<span class="hit">งานฟรีแลนซ์และงาน part-time</span></span>
     </p>
-    <p class="prose" style="margin-top:18px">
-      <span data-en>Part-time and freelance, alongside my degree — API work, database work, front end, or testing.</span>
-      <span data-th>รับงาน part-time และฟรีแลนซ์ควบคู่กับการเรียน ทั้งงาน API งานฐานข้อมูล งานหน้าเว็บ หรืองานทดสอบ</span>
+    <p class="prose" style="margin-top:20px">
+      <span data-en>I take on part-time and freelance work alongside my degree. What I am best at is a small application finished end to end and handed over working — the classroom savings bank and Onion Memo are both that. I also take REST API and database work on its own, front end in React, a Flutter app, or a test suite for something that already runs.</span>
+      <span data-th>รับงาน part-time และฟรีแลนซ์ควบคู่กับการเรียน ถนัดที่สุดคือแอปขนาดเล็กที่ทำจบในตัวและส่งมอบได้จริง อย่างกระปุกห้องเรียนและ Onion Memo นอกจากนั้นรับงานย่อยด้วย ทั้ง REST API และฐานข้อมูล งานหน้าเว็บด้วย React แอป Flutter หรือเขียนชุดทดสอบให้ของที่รันอยู่แล้ว</span>
     </p>
     <div class="reach">
       <div>
