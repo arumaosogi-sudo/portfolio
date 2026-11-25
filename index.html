@@ -147,6 +147,16 @@
   .tech span{font-size:12.5px;color:var(--ink-soft);background:#F4EFEB;
              border-radius:6px;padding:4px 9px}
   .note{margin-top:14px;font-size:14px;color:var(--ink-faint);max-width:58ch}
+
+  /* Screens from the running app, for a project with no public demo. */
+  .shots{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}
+  .shots a{display:block}
+  .shots img{width:100%;border-radius:10px;border:1px solid var(--line);background:#fff}
+  .shots a:hover img{border-color:#D8CCC4}
+  .shots figcaption{margin-top:7px;font-size:13px;color:var(--ink-faint);line-height:1.45}
+  @media (max-width:760px){
+    .shots{grid-template-columns:repeat(2,1fr);gap:12px}
+  }
   .note code{font-size:13px;color:var(--ink-soft);background:#F4EFEB;border-radius:4px;padding:1px 5px}
 
   /* skills */
@@ -251,8 +261,8 @@
         </h1>
 
         <p class="lede rise d3">
-          <span data-en>Hi, I'm Nitiphum — a third-year software engineering student at Mae Fah Luang University. Three of the projects below are running right now, and you can open them.</span>
-          <span data-th>สวัสดีครับ ผมนิติภูมิ นักศึกษาวิศวกรรมซอฟต์แวร์ชั้นปีที่ 3 มหาวิทยาลัยแม่ฟ้าหลวง สามโปรเจกต์ด้านล่างรันอยู่จริงตอนนี้ และกดเข้าไปดูได้เลย</span>
+          <span data-en>Hi, I'm Nitiphum — a third-year software engineering student at Mae Fah Luang University. Two of the projects below are running right now, and you can open them.</span>
+          <span data-th>สวัสดีครับ ผมนิติภูมิ นักศึกษาวิศวกรรมซอฟต์แวร์ชั้นปีที่ 3 มหาวิทยาลัยแม่ฟ้าหลวง สองโปรเจกต์ด้านล่างรันอยู่จริงตอนนี้ และกดเข้าไปดูได้เลย</span>
         </p>
 
         <div class="cta rise d4">
@@ -275,7 +285,7 @@
   <section id="work">
     <div class="head">
       <h2><span data-en>Selected work</span><span data-th>ผลงานที่เลือกมา</span></h2>
-      <div class="count"><span data-en>Three of the four are running right now</span><span data-th>สามในสี่ตัวนี้รันอยู่จริงตอนนี้</span></div>
+      <div class="count"><span data-en>Two you can open, one in screenshots</span><span data-th>เปิดดูได้จริง 2 อีก 1 เป็นภาพหน้าจอ</span></div>
     </div>
 
     <!-- Task Board -->
@@ -315,7 +325,7 @@
     <article class="proj">
       <div class="proj-top">
         <div class="proj-name"><a href="https://github.com/arumaosogi-sudo/classroom-savings-bank" target="_blank" rel="noopener">Classroom Savings Bank</a></div>
-        <a class="live" href="https://kid-savings-bank.vercel.app" target="_blank" rel="noopener">
+        <a class="live" href="https://savings-bank-demo.onrender.com" target="_blank" rel="noopener">
           <span data-en>Open live</span><span data-th>เปิดเว็บจริง</span> ↗
         </a>
         <div class="proj-kind"><span data-en>Solo project, web and Android</span><span data-th>โปรเจกต์เดี่ยว ทำทั้งเว็บและ Android</span></div>
@@ -338,15 +348,16 @@
           <li data-th>การแก้รายการบันทึกเป็น<strong>หลักฐานที่มองเห็นได้</strong> ไม่ใช่การลบทิ้ง</li>
         </ul>
       </div>
+      <p class="note">
+        <span data-en>The demo runs on its own database with invented pupils, and never sends a real LINE message. Sign in with <code>demo@savingsbank.app</code> / <code>demo-savings-2026</code>; the free server sleeps when idle, so the first load can take about a minute.</span>
+        <span data-th>demo ใช้ฐานข้อมูลแยกของตัวเอง นักเรียนเป็นชื่อสมมุติ และไม่ส่งข้อความออก LINE จริงสักข้อความ เข้าด้วย <code>demo@savingsbank.app</code> / <code>demo-savings-2026</code> เซิร์ฟเวอร์ฟรีจะหลับเมื่อไม่มีคนใช้ ครั้งแรกจึงอาจรอราวหนึ่งนาที</span>
+      </p>
     </article>
 
     <!-- Digital Muscle -->
     <article class="proj">
       <div class="proj-top">
         <div class="proj-name"><a href="https://github.com/arumaosogi-sudo/digital-muscle" target="_blank" rel="noopener">Digital Muscle</a></div>
-        <a class="live" href="https://digital-muscle.medicsync.workers.dev" target="_blank" rel="noopener">
-          <span data-en>Open live</span><span data-th>เปิดเว็บจริง</span> ↗
-        </a>
         <div class="proj-kind"><span data-en>Team of two. My scope was the platform</span><span data-th>ทีมสองคน ผมรับผิดชอบส่วนแพลตฟอร์ม</span></div>
       </div>
       <div class="proj-body">
@@ -367,6 +378,16 @@
           <li data-th><strong>โมดูลสำรวจกล้ามเนื้อ 3 มิติ</strong> ด้วย three.js คลิกดูชื่อแต่ละชิ้นส่วนได้</li>
         </ul>
       </div>
+      <div class="shots">
+        <figure><a href="shots/dm-3d-explore.jpg" target="_blank" rel="noopener"><img src="shots/dm-3d-explore.jpg" alt="The 3D explorer showing the biceps brachii with numbered, clickable parts" width="800" height="500" loading="lazy"></a><figcaption><span data-en>3D explorer, biceps brachii</span><span data-th>โมดูล 3 มิติ — biceps brachii</span></figcaption></figure>
+        <figure><a href="shots/dm-admin-classes.jpg" target="_blank" rel="noopener"><img src="shots/dm-admin-classes.jpg" alt="The instructor dashboard listing a section with its generated join QR code" width="800" height="500" loading="lazy"></a><figcaption><span data-en>Instructor dashboard, QR per section</span><span data-th>หน้าอาจารย์ — QR ราย Section</span></figcaption></figure>
+        <figure><a href="shots/dm-student-home.jpg" target="_blank" rel="noopener"><img src="shots/dm-student-home.jpg" alt="The student home screen with pretest, lessons, games, 3D explore and posttest" width="800" height="500" loading="lazy"></a><figcaption><span data-en>Student home</span><span data-th>หน้าแรกของนักศึกษา</span></figcaption></figure>
+        <figure><a href="shots/dm-signin.jpg" target="_blank" rel="noopener"><img src="shots/dm-signin.jpg" alt="The sign-in screen, restricted to university Google accounts" width="800" height="500" loading="lazy"></a><figcaption><span data-en>Sign-in, university accounts only</span><span data-th>หน้าเข้าสู่ระบบ</span></figcaption></figure>
+      </div>
+      <p class="note">
+        <span data-en>No public demo: the deployment holds real student accounts and exam results, so these are screens from the app running locally on seeded data.</span>
+        <span data-th>ไม่เปิด demo สาธารณะ เพราะระบบจริงมีบัญชีนักศึกษาและผลสอบจริง ภาพเหล่านี้จึงมาจากการรันแอปในเครื่องด้วยข้อมูลตัวอย่าง</span>
+      </p>
     </article>
 
     <!-- SAGA -->
