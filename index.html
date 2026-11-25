@@ -18,210 +18,199 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@1&family=IBM+Plex+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Archivo+Black&family=IBM+Plex+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
   :root{
-    --cream:#FBF8F6;
-    --blush:#F3DAD3;
-    --ink:#171412;
-    --ink-soft:#6E6560;
-    --ink-faint:#776E68;          /* 4.71:1 on cream — the small meta text needs AA */
-    --accent:#C0574A;             /* display only: large type, 4.22:1 */
-    --accent-deep:#AC493D;        /* small type on the live pill, 4.91:1 */
-    --slate:#243043;
-    --line:#E8DFD9;
-    --card:#FFFFFF;
-    --sans:'Plus Jakarta Sans','IBM Plex Sans Thai',system-ui,-apple-system,sans-serif;
-    --serif:'Instrument Serif','IBM Plex Sans Thai',Georgia,serif;
+    --paper:#EFE9E1;              /* oat ground, deep enough to read as a material */
+    --paper-lift:#F7F3ED;         /* panels that sit on top of it */
+    --ink:#17140F;
+    --ink-soft:#574F46;           /* 7.3:1 on paper */
+    --ink-faint:#6E665C;          /* 5.1:1 on paper — small meta still clears AA */
+    --blue:#2436D8;               /* the one hot accent */
+    --blue-deep:#1C2BAE;          /* small text on tinted fills */
+    --blue-wash:#DEE1F8;
+    --line:#D9CFC2;
+    --sans:'Archivo','IBM Plex Sans Thai',system-ui,-apple-system,sans-serif;
+    --display:'Archivo Black','IBM Plex Sans Thai',system-ui,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  /* overflow-x:clip rather than hidden: the hero's glow is a pseudo-element that
-     reaches past the right edge, and `hidden` on body alone still lets the page
-     scroll sideways to it. `clip` cuts it without creating a scroll container. */
   html{scroll-behavior:smooth;color-scheme:light;overflow-x:clip}
   body{
-    background:var(--cream);color:var(--ink-soft);
-    font-family:var(--sans);font-size:17px;line-height:1.65;
-    -webkit-font-smoothing:antialiased;overflow-x:clip;
+    background:var(--paper);color:var(--ink-soft);
+    font-family:var(--sans);font-size:17px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;overflow-x:clip;position:relative;
   }
+  /* Paper grain. Both references sit on a textured ground rather than a flat
+     fill; this is what stops a large empty page reading as blank. */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+    mix-blend-mode:multiply;
+  }
+  .wrap{position:relative;z-index:1}
   a{color:inherit;text-decoration:none}
-  /* height:auto matters: the img carries width/height attributes for layout
-     stability, and without it a CSS width override stretches the picture. */
   img{display:block;max-width:100%;height:auto}
-  ::selection{background:#F6D9D2;color:var(--ink)}
-  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+  ::selection{background:var(--blue);color:#fff}
+  :focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:2px}
 
-  .wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 clamp(20px,4vw,52px)}
 
   /* ───────────────────────── nav ───────────────────────── */
-  .topbar{position:sticky;top:0;z-index:50;padding:18px 0 10px;
-          background:linear-gradient(var(--cream) 62%,rgba(251,248,246,0));}
-  .bar{display:flex;align-items:center;justify-content:center;gap:14px;position:relative}
-  .pill-nav{display:flex;align-items:center;gap:4px;background:var(--card);
-            border:1px solid var(--line);border-radius:999px;padding:5px 6px 5px 5px;
-            box-shadow:0 1px 2px rgba(23,20,18,.04)}
-  .mark{width:30px;height:30px;border-radius:999px;background:var(--slate);color:#fff;
-        display:grid;place-items:center;font-weight:700;font-size:13px;letter-spacing:-.02em}
+  .topbar{position:sticky;top:0;z-index:50;padding:18px 0 12px;
+          background:linear-gradient(var(--paper) 64%,rgba(239,233,225,0))}
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:14px}
+  .pill-nav{display:flex;align-items:center;gap:2px;background:var(--paper-lift);
+            border:2px solid var(--ink);border-radius:999px;padding:4px 5px 4px 4px}
+  .mark{width:30px;height:30px;border-radius:999px;background:var(--blue);color:#fff;
+        display:grid;place-items:center;font-family:var(--display);font-size:13px}
   .pill-nav a{padding:7px 14px;border-radius:999px;font-size:14.5px;font-weight:500;color:var(--ink-soft)}
   .pill-nav a:hover{color:var(--ink)}
-  .pill-nav a.on{background:#F3EEEA;color:var(--ink)}
-  .lang{position:absolute;right:0;display:flex;gap:2px;background:var(--card);
-        border:1px solid var(--line);border-radius:999px;padding:4px}
-  .lang button{border:0;background:none;cursor:pointer;font:inherit;font-size:13px;font-weight:500;
+  .pill-nav a.on{background:var(--ink);color:var(--paper-lift)}
+  .lang{display:flex;gap:2px;background:var(--paper-lift);border:2px solid var(--ink);
+        border-radius:999px;padding:3px}
+  .lang button{border:0;background:none;cursor:pointer;font:inherit;font-size:13px;font-weight:600;
                color:var(--ink-faint);padding:4px 11px;border-radius:999px}
-  .lang button.on{background:var(--slate);color:#fff}
+  .lang button.on{background:var(--blue);color:#fff}
 
   /* ───────────────────────── hero ───────────────────────── */
-  .hero{position:relative;padding:34px 0 0}
-  .hero::before{
-    content:"";position:absolute;inset:-120px -14% -60px 28%;z-index:-1;
-    background:radial-gradient(58% 62% at 58% 42%,var(--blush) 0%,rgba(243,218,211,.52) 42%,rgba(251,248,246,0) 72%);
-  }
-  .hero-grid{display:grid;grid-template-columns:minmax(0,1.22fr) minmax(0,.78fr);
-             gap:clamp(20px,3vw,40px);align-items:end}
-  .badge{display:inline-flex;align-items:center;gap:8px;background:var(--card);
-         border:1px solid var(--line);border-radius:999px;padding:7px 15px 7px 11px;
-         font-size:13.5px;font-weight:500;color:var(--ink-soft);margin-bottom:26px}
-  .badge .dot{width:7px;height:7px;border-radius:999px;background:#4F9B6A;
-              box-shadow:0 0 0 3px rgba(79,155,106,.17)}
+  .hero{padding:26px 0 0}
+  .badge{display:inline-flex;align-items:center;gap:9px;background:var(--paper-lift);
+         border:2px solid var(--ink);border-radius:999px;padding:6px 16px 6px 12px;
+         font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:26px}
+  .badge .dot{width:8px;height:8px;border-radius:999px;background:var(--blue)}
 
-  h1{font-size:clamp(34px,4.5vw,56px);line-height:1.06;letter-spacing:-.03em;
-     font-weight:700;color:var(--ink);max-width:14ch}
-  h1 .em{display:block;font-family:var(--serif);font-weight:400;font-style:italic;
-         color:var(--accent);letter-spacing:-.012em;font-size:1.06em;line-height:1.08}
-  .lede{margin-top:24px;max-width:34em;font-size:17px;color:var(--ink-soft)}
-  .cta{display:flex;flex-wrap:wrap;gap:11px;margin-top:32px;padding-bottom:58px}
-  .btn{display:inline-flex;align-items:center;gap:9px;border-radius:999px;
-       padding:13px 22px;font-size:15px;font-weight:600;border:1px solid transparent}
-  .btn-dark{background:var(--slate);color:#fff}
-  .btn-dark:hover{background:#2F3E55}
-  .btn-ghost{background:var(--card);border-color:var(--line);color:var(--ink)}
-  .btn-ghost:hover{border-color:#D8CCC4}
+  .setup{font-size:clamp(17px,2.1vw,24px);font-weight:500;color:var(--ink-soft);
+         max-width:30ch;line-height:1.3;letter-spacing:-.01em}
 
-  /* The photo keeps its own colours. A white mat separates the green foliage
-     from the blush field behind it, the way a print does on a coloured wall. */
-  .portrait{
-    position:relative;align-self:end;width:100%;max-width:424px;
-    margin:0 0 6px auto;background:#fff;padding:11px;border-radius:26px;
-    box-shadow:
-      0 1px 2px rgba(23,20,18,.05),
-      0 14px 30px -10px rgba(23,20,18,.16),
-      0 34px 64px -24px rgba(122,74,60,.22);
-  }
-  .portrait img{width:100%;border-radius:17px}
+  /* The punchline. His own sentence ends in one word set as an image, running
+     past the right edge the way both references do. */
+  .punch{font-family:var(--display);color:var(--ink);
+         font-size:clamp(76px,19vw,250px);line-height:.82;letter-spacing:-.035em;
+         margin:6px 0 0;white-space:nowrap}
+  .punch .dot{color:var(--blue)}
+
+  .hero-lower{display:grid;grid-template-columns:minmax(0,1fr) auto;
+              gap:clamp(20px,4vw,52px);align-items:end;margin-top:28px}
+  .lede{max-width:46ch;font-size:16.5px;color:var(--ink-soft)}
+  .cta{display:flex;flex-wrap:wrap;gap:11px;margin-top:24px}
+  .btn{display:inline-flex;align-items:center;border-radius:999px;padding:13px 24px;
+       font-size:15px;font-weight:600;border:2px solid var(--ink)}
+  .btn-dark{background:var(--ink);color:var(--paper-lift)}
+  .btn-dark:hover{background:var(--blue);border-color:var(--blue)}
+  .btn-ghost{background:transparent;color:var(--ink)}
+  .btn-ghost:hover{background:var(--paper-lift)}
+
+  /* Photo unchanged — only the frame answers the heavier page. */
+  .portrait{width:clamp(180px,22vw,262px);flex:none}
+  .portrait img{border:3px solid var(--ink);border-radius:4px;
+                box-shadow:10px 10px 0 var(--blue)}
 
   /* ───────────────────────── sections ───────────────────────── */
-  section{padding:76px 0 0}
+  section{padding:88px 0 0}
   .head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;
-        padding-bottom:22px;border-bottom:1px solid var(--line);margin-bottom:38px}
-  .head h2{font-size:clamp(25px,3vw,33px);line-height:1.15;letter-spacing:-.022em;
-           font-weight:700;color:var(--ink)}
+        padding-bottom:16px;border-bottom:3px solid var(--ink);margin-bottom:34px}
+  .head h2{font-family:var(--display);font-size:clamp(30px,4.6vw,54px);line-height:1;
+           letter-spacing:-.03em;color:var(--ink)}
   .head .count{font-size:14px;color:var(--ink-faint);white-space:nowrap}
 
-  .prose p{max-width:62ch;margin-bottom:17px}
+  .prose p{max-width:64ch;margin-bottom:16px}
   .prose p:last-child{margin-bottom:0}
   .prose strong{color:var(--ink);font-weight:600}
 
   /* projects — editorial rows, not a card grid */
-  .proj{padding:34px 0;border-bottom:1px solid var(--line)}
-  .proj:first-of-type{padding-top:0}
+  .proj{padding:32px 0;border-bottom:1px solid var(--line)}
+  .proj:first-of-type{padding-top:4px}
   .proj:last-of-type{border-bottom:0}
-  .proj-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 14px}
-  .proj-name{font-size:clamp(23px,2.5vw,30px);font-weight:700;letter-spacing:-.022em;color:var(--ink)}
-  .proj-name a{border-bottom:2px solid transparent}
-  .proj-name a:hover{border-bottom-color:var(--accent)}
+  .proj-top{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
+  .proj-name{font-family:var(--display);font-size:clamp(26px,3.4vw,42px);line-height:1.02;
+             letter-spacing:-.03em;color:var(--ink)}
+  .proj-name a{box-shadow:inset 0 -3px 0 transparent}
+  .proj-name a:hover{box-shadow:inset 0 -3px 0 var(--blue)}
   .proj-kind{font-size:14.5px;color:var(--ink-faint)}
-  .live{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;
-        color:var(--accent-deep);background:#FBEEEA;border:1px solid #F0D7D0;
-        border-radius:999px;padding:4px 12px}
-  .live:hover{background:#F7E3DD}
-  .proj-body{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);
-             gap:12px 46px;margin-top:16px}
+  .live{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;
+        color:#fff;background:var(--blue);border-radius:999px;padding:5px 14px}
+  .live:hover{background:var(--blue-deep)}
+  .proj-body{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);
+             gap:12px 48px;margin-top:18px}
   .proj-body p{max-width:58ch}
   .facts{list-style:none;font-size:15.5px}
-  .facts li{position:relative;padding-left:18px;margin-bottom:7px}
-  .facts li::before{content:"";position:absolute;left:0;top:.68em;width:7px;height:1px;background:var(--accent)}
+  .facts li{position:relative;padding-left:20px;margin-bottom:8px}
+  .facts li::before{content:"";position:absolute;left:0;top:.62em;width:9px;height:3px;background:var(--blue)}
   .facts strong{color:var(--ink);font-weight:600}
   .tech{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
-  .tech span{font-size:12.5px;color:var(--ink-soft);background:#F4EFEB;
-             border-radius:6px;padding:4px 9px}
-  .note{margin-top:14px;font-size:14px;color:var(--ink-faint);max-width:58ch}
+  .tech span{font-size:12.5px;font-weight:500;color:var(--ink);background:var(--paper-lift);
+             border:1px solid var(--line);border-radius:999px;padding:4px 11px}
+  .note{margin-top:16px;font-size:14px;color:var(--ink-faint);max-width:62ch;
+        border-left:3px solid var(--blue);padding-left:14px}
+  .note code{font-size:13px;color:var(--ink);background:var(--blue-wash);border-radius:3px;padding:1px 5px}
 
-  /* Screens from the running app, for a project with no public demo. */
-  .shots{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}
+  /* screens from the running app, for a project with no public demo */
+  .shots{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px}
   .shots a{display:block}
-  .shots img{width:100%;border-radius:10px;border:1px solid var(--line);background:#fff}
-  .shots a:hover img{border-color:#D8CCC4}
-  .shots figcaption{margin-top:7px;font-size:13px;color:var(--ink-faint);line-height:1.45}
-  @media (max-width:760px){
-    .shots{grid-template-columns:repeat(2,1fr);gap:12px}
-  }
-  .note code{font-size:13px;color:var(--ink-soft);background:#F4EFEB;border-radius:4px;padding:1px 5px}
+  .shots img{width:100%;border:2px solid var(--ink);border-radius:3px;background:#fff}
+  .shots a:hover img{box-shadow:6px 6px 0 var(--blue)}
+  .shots figcaption{margin-top:9px;font-size:13px;color:var(--ink-faint);line-height:1.4}
+  @media (max-width:760px){.shots{grid-template-columns:repeat(2,1fr);gap:12px}}
 
   /* skills */
-  .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:28px 40px}
-  .skill h3{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:5px}
+  .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(246px,1fr));gap:26px 40px}
+  .skill h3{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:5px}
   .skill p{font-size:15.5px;color:var(--ink-soft)}
 
   /* education */
   .edu-top{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 18px}
-  .edu-top h3{font-size:20px;font-weight:700;color:var(--ink);letter-spacing:-.015em}
+  .edu-top h3{font-size:21px;font-weight:700;color:var(--ink);letter-spacing:-.015em}
   .edu-top .yr{font-size:14.5px;color:var(--ink-faint)}
   .edu-sub{font-size:15.5px;color:var(--ink-soft);margin:6px 0 14px}
 
   /* contact */
-  .closing{font-size:clamp(23px,2.9vw,32px);line-height:1.3;letter-spacing:-.02em;
-           color:var(--ink);font-weight:600;max-width:17ch}
-  .closing .em{font-family:var(--serif);font-weight:400;font-style:italic;color:var(--accent);font-size:1.1em}
+  .closing{font-family:var(--display);font-size:clamp(32px,6vw,76px);line-height:.92;
+           letter-spacing:-.035em;color:var(--ink);max-width:13ch}
+  .closing .hit{color:var(--blue)}
   .reach{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-         gap:20px 34px;margin-top:34px;padding-top:28px;border-top:1px solid var(--line)}
-  .reach .k{display:block;font-size:13.5px;color:var(--ink-faint);margin-bottom:3px}
-  .reach a{font-size:16.5px;font-weight:600;color:var(--ink);border-bottom:1px solid var(--line)}
-  .reach a:hover{border-bottom-color:var(--accent)}
+         gap:22px 34px;margin-top:38px;padding-top:28px;border-top:3px solid var(--ink)}
+  .reach .k{display:block;font-size:13.5px;color:var(--ink-faint);margin-bottom:4px}
+  .reach a{font-size:16.5px;font-weight:600;color:var(--ink);box-shadow:inset 0 -2px 0 var(--line)}
+  .reach a:hover{box-shadow:inset 0 -2px 0 var(--blue)}
   .reach a + a{margin-left:16px}
 
-  footer{margin-top:72px;padding:26px 0 40px;border-top:1px solid var(--line);
+  footer{margin-top:76px;padding:24px 0 42px;border-top:1px solid var(--line);
          font-size:14px;color:var(--ink-faint);
          display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:space-between}
 
   /* bilingual */
   html[lang="en"] [data-th],html[lang="th"] [data-en]{display:none}
-  html[lang="th"] body{font-family:'IBM Plex Sans Thai','Plus Jakarta Sans',sans-serif}
-  html[lang="th"] h1 .em,html[lang="th"] .closing .em{
-    font-family:'IBM Plex Sans Thai',sans-serif;font-style:normal;font-weight:300;font-size:1em}
-  /* Thai runs longer than the English and has no italic, so it needs its own
-     measure and a lighter weight to carry the accent line. */
-  html[lang="th"] h1{line-height:1.26;letter-spacing:-.01em;max-width:21ch;
-                     font-size:clamp(28px,3.5vw,44px)}
-  html[lang="th"] .closing{max-width:22ch;line-height:1.5}
+  html[lang="th"] body{font-family:'IBM Plex Sans Thai','Archivo',sans-serif}
+  /* Thai has no Archivo Black equivalent and sets much wider, so the punchline
+     gets its own face, size and wrapping rather than overflowing the viewport. */
+  html[lang="th"] .punch,html[lang="th"] .head h2,
+  html[lang="th"] .proj-name,html[lang="th"] .closing{
+    font-family:'IBM Plex Sans Thai',sans-serif;font-weight:600;letter-spacing:-.01em}
+  html[lang="th"] .punch{font-size:clamp(42px,9.5vw,104px);line-height:1.08;white-space:normal}
+  html[lang="th"] .closing{font-size:clamp(28px,4.4vw,52px);line-height:1.22;max-width:18ch}
+  html[lang="th"] .head h2{font-size:clamp(26px,3.6vw,42px);line-height:1.2}
+  html[lang="th"] .proj-name{font-size:clamp(23px,2.8vw,34px);line-height:1.25}
 
-  /* One orchestrated entrance, hero only. Gated behind a class that script adds,
-     so the hero is visible by default — if the animation never runs, nothing is
-     left stuck at opacity 0. */
+  /* One orchestrated entrance, hero only, gated so nothing can stay hidden. */
   @media (prefers-reduced-motion:no-preference){
-    .js .rise{opacity:0;transform:translateY(14px);animation:rise .62s cubic-bezier(.22,.7,.3,1) forwards}
-    .js .d1{animation-delay:.05s}.js .d2{animation-delay:.14s}.js .d3{animation-delay:.23s}
-    .js .d4{animation-delay:.32s}.js .d5{animation-delay:.18s}
+    .js .rise{opacity:0;transform:translateY(16px);animation:rise .6s cubic-bezier(.22,.7,.3,1) forwards}
+    .js .d1{animation-delay:.04s}.js .d2{animation-delay:.12s}.js .d3{animation-delay:.3s}
+    .js .d4{animation-delay:.38s}.js .d5{animation-delay:.22s}
     @keyframes rise{to{opacity:1;transform:none}}
   }
 
   @media (max-width:880px){
-    .hero-grid{grid-template-columns:1fr;align-items:start}
-    .hero::before{inset:-140px -12% auto -8%;height:560px}
-    /* Text first on a phone: the headline is the thing worth reading, and a
-       portrait this size would push it under the fold. */
-    .portrait{margin:6px auto 0 0;max-width:270px;padding:9px;border-radius:22px}
-    .portrait img{border-radius:14px}
-    .cta{padding-bottom:14px}
+    .hero-lower{grid-template-columns:1fr;align-items:start}
+    .portrait{width:200px;order:2;margin-top:4px}
     .proj-body{grid-template-columns:1fr;gap:14px}
-    .lang{position:static}
-    .bar{flex-wrap:wrap}
+    .bar{flex-wrap:wrap;gap:10px}
   }
   @media (max-width:560px){
     body{font-size:16px}
     .pill-nav a{padding:7px 10px;font-size:13.5px}
-    section{padding:58px 0 0}
+    section{padding:62px 0 0}
+    .punch{letter-spacing:-.045em}
   }
 </style>
 </head>
@@ -247,21 +236,27 @@
 
   <!-- ══════════════ hero ══════════════ -->
   <div class="hero">
-    <div class="hero-grid">
+    <div class="badge rise d1">
+      <span class="dot" aria-hidden="true"></span>
+      <span data-en>Open to part-time and freelance work</span>
+      <span data-th>รับงาน part-time และฟรีแลนซ์</span>
+    </div>
+
+    <h1>
+      <span class="setup rise d2" style="display:block">
+        <span data-en>I build backends, APIs, and the tests that keep them</span>
+        <span data-th>ผมทำหลังบ้าน ทำ API และเขียนเทสต์</span>
+      </span>
+      <span class="punch rise d3" style="display:block">
+        <span data-en>HONEST<span class="dot">.</span></span>
+        <span data-th>ที่คอยจับผิดมันเอง<span class="dot">.</span></span>
+      </span>
+    </h1>
+
+    <div class="hero-lower">
       <div>
-        <div class="badge rise d1">
-          <span class="dot" aria-hidden="true"></span>
-          <span data-en>Open to part-time and freelance work</span>
-          <span data-th>รับงาน part-time และฟรีแลนซ์</span>
-        </div>
-
-        <h1 class="rise d2">
-          <span data-en>I build backends,<br>APIs, and the tests<span class="em">that keep them honest.</span></span>
-          <span data-th>ผมทำหลังบ้าน ทำ API<br>และเขียนเทสต์<span class="em">ที่คอยจับผิดมันเอง</span></span>
-        </h1>
-
-        <p class="lede rise d3">
-          <span data-en>Hi, I'm Nitiphum — a third-year software engineering student at Mae Fah Luang University. Two of the projects below are running right now, and you can open them.</span>
+        <p class="lede rise d4">
+          <span data-en>Hi, I’m Nitiphum — a third-year software engineering student at Mae Fah Luang University. Two of the projects below are running right now, and you can open them.</span>
           <span data-th>สวัสดีครับ ผมนิติภูมิ นักศึกษาวิศวกรรมซอฟต์แวร์ชั้นปีที่ 3 มหาวิทยาลัยแม่ฟ้าหลวง สองโปรเจกต์ด้านล่างรันอยู่จริงตอนนี้ และกดเข้าไปดูได้เลย</span>
         </p>
 
@@ -498,8 +493,8 @@
       <h2><span data-en>Contact</span><span data-th>ติดต่อ</span></h2>
     </div>
     <p class="closing">
-      <span data-en>Got something half-built? <span class="em">I'll finish it.</span></span>
-      <span data-th>มีงานที่ค้างอยู่ไหมครับ <span class="em">ผมทำให้จบได้</span></span>
+      <span data-en>Got something half-built? <span class="hit">I'll finish it.</span></span>
+      <span data-th>มีงานที่ค้างอยู่ไหมครับ <span class="hit">ผมทำให้จบได้</span></span>
     </p>
     <p class="prose" style="margin-top:18px">
       <span data-en>Part-time and freelance, alongside my degree — API work, database work, front end, or testing.</span>
